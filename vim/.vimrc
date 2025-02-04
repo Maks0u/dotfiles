@@ -1,6 +1,15 @@
 " Colemak remap
 " Inspired by https://github.com/jooize/vim-colemak
 
+" Legend
+" <C-X>     Ctrl-X
+" (c     )  Command-line mode
+" ( i    )  Insert mode
+" (  n   )  Normal mode
+" (   o  )  Operator pending
+" (    v )  Visual+Select mode
+" (     x)  Visual mode
+
 "    e    |    k
 "  h   i  |  h   l
 "    n    |    j
@@ -89,6 +98,8 @@ noremap go gu
 
 " Escape with ; in visual mode
 xnoremap ; <Esc>
+" Escape with ;; in insert mode
+inoremap ;; <Esc>
 
 " Enter command mode with <space>
 nnoremap <space> :
