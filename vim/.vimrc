@@ -38,13 +38,14 @@ noremap Y W
 
 " Visual
 nnoremap a v
-xnoremap a v
-" Visual bloc
-nnoremap A <C-V>
-xnoremap A <C-V>
+" Cycle Visual bloc
+xnoremap a <C-V>
 " Visual line
-nnoremap <C-A> V
-xnoremap <C-A> V
+nnoremap A V
+xnoremap A V
+" Visual bloc
+nnoremap <C-A> <C-V>
+xnoremap <C-A> <C-V>
 
 " Replace
 nnoremap r r
@@ -121,8 +122,8 @@ xnoremap X dd
 nnoremap c y
 xnoremap c y
 " Copy line
+nnoremap cc yy
 nnoremap C yy
-xnoremap C yy
 " Paste
 nnoremap v p
 xnoremap v p
