@@ -1,3 +1,19 @@
+" Vim settings
+" Repo: https://github.com/Maks0u/env
+
+" Prompt confirm instead of throwing an error when trying to exit without saving
+set confirm
+
+" Ignore case when searching
+set ignorecase
+
+" Show relative line numbers
+set relativenumber
+set number
+
+" End of line
+noremap - $
+
 " Colemak remap
 " Inspired by https://github.com/jooize/vim-colemak
 
@@ -16,12 +32,22 @@
 
 " Left
 noremap h h
+noremap H 10h
 " Down
 noremap n j
+noremap N 5j
 " Up
 noremap e k
+noremap E 5k
 " Right
 noremap i l
+noremap I 10l
+
+" Move lines up and down
+nnoremap <C-e> :m<space>-2<CR>
+nnoremap <C-n> :m<space>+1<CR>
+xnoremap <C-e> :m '<-2<CR>gv=gv
+xnoremap <C-n> :m '>+1<CR>gv=gv
 
 " Back word
 noremap l b
@@ -102,6 +128,11 @@ xnoremap ; <Esc>
 " Escape with ;; in insert mode
 inoremap ;; <Esc>
 
+" Save and quit
+noremap J ZZ
+" Quit without saving
+noremap Q ZQ
+
 " Enter command mode with <space>
 nnoremap <space> :
 xnoremap <space> :
@@ -134,6 +165,10 @@ xnoremap gv gp
 nnoremap gV gP
 xnoremap gV gP
 
+" 
+nnoremap j z
+xnoremap j z
+
 " Before next t{char}
 noremap p t
 " After previous t{char}
@@ -143,9 +178,9 @@ noremap b ;
 " Repeat latest f or t reversed
 noremap B ,
 " Repeat latest / or ?
-noremap k n
+noremap k nzz
 " Repeat latest / or ? reversed
-noremap K N
+noremap K Nzz
 
 " Reselect last visual selection
 nnoremap ga gv
@@ -158,24 +193,6 @@ xnoremap ge H
 " To line [count] from bottom of window
 nnoremap gn L
 xnoremap gn L
-
-" 
-nnoremap j z
-xnoremap j z
-" Quit
-nnoremap J Z
-xnoremap J Z
-
-" Next fold
-nnoremap jn zj
-xnoremap jn zj
-nnoremap jj zj
-xnoremap jj zj
-" Previous fold
-nnoremap je zk
-xnoremap je zk
-nnoremap jk zk
-xnoremap jk zk
 
 " Window left
 nnoremap <C-W>h <C-W>h
