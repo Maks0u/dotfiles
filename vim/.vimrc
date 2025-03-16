@@ -11,6 +11,9 @@ set ignorecase
 set relativenumber
 set number
 
+" Scroll offset
+set scrolloff=10
+
 " End of line
 noremap - $
 
