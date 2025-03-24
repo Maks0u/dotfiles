@@ -1,10 +1,25 @@
 " Vim settings
 " Repo: https://github.com/Maks0u/env
 
+" Files encoding
 set encoding=utf-8
+
+" Internal files
+silent !mkdir -p ~/.vim/bak
+silent !mkdir -p ~/.vim/swap
+silent !mkdir -p ~/.vim/undo
+set backupdir=~/.vim/bak//,.,/tmp//
+set directory=~/.vim/swap//,.,/tmp//
+set undodir=~/.vim/undo//,.,/tmp//
+set undofile
 
 " Prompt confirm instead of throwing an error when trying to exit without saving
 set confirm
+
+" Indent using spaces
+set expandtab
+set shiftwidth=4
+set autoindent
 
 " Ignore case when searching
 set ignorecase
@@ -231,6 +246,11 @@ function! Surround(open, close)
     let @" = l:default_register
 endfunction
 
+function! SurroundInput()
+    let l:chars = input("Surrond: ")
+    " TODO: split chars as open and close, then call surround function
+endfunction
+
 function! DeleteSurround(char)
     let l:default_register = @"
     if a:char == "'" || a:char == '"' || a:char == "`"
@@ -241,7 +261,7 @@ function! DeleteSurround(char)
     let @" = l:default_register
 endfunction
 
-function ChangeSurround(char, open, close)
+function! ChangeSurround(char, open, close)
     let l:default_register = @"
     if a:char == "'" || a:char == '"' || a:char == '`'
         execute "normal! vi" . a:char . "yva" . a:char . "h\"_d"
