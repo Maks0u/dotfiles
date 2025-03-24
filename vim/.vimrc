@@ -10,23 +10,19 @@ silent !mkdir -p ~/.vim/swap
 silent !mkdir -p ~/.vim/undo
 set backupdir=~/.vim/bak//,.,/tmp//
 set directory=~/.vim/swap//,.,/tmp//
-set undodir=~/.vim/undo//,.,/tmp//
-set undofile
+set undofile undodir=~/.vim/undo//,.,/tmp//
 
 " Prompt confirm instead of throwing an error when trying to exit without saving
 set confirm
 
 " Indent using spaces
-set expandtab
-set shiftwidth=4
-set autoindent
+set autoindent expandtab shiftwidth=4
 
 " Ignore case when searching
 set ignorecase
 
 " Show relative line numbers
-set relativenumber
-set number
+set number relativenumber
 
 " Show keystrokes in status line
 set showcmd
@@ -37,8 +33,12 @@ set scrolloff=10
 " Virtual editing (cursor can move anywhere)
 set virtualedit=all
 
+" Don't wrap lines
+set nowrap
+
 " Leader key
 let mapleader=" "
+noremap <Space> <Nop>
 
 noremap <Leader>w :w<CR>
 " noremap <Leader>wq :wq
@@ -81,15 +81,15 @@ noremap E 5k
 noremap i l
 noremap I 10l
 
-" Center screen when moving
-noremap { {zz
-noremap } }zz
-
 " Move lines up and down
 nnoremap <C-e> :m<space>-2<CR>
 nnoremap <C-n> :m<space>+1<CR>
 xnoremap <C-e> :m '<-2<CR>gv=gv
 xnoremap <C-n> :m '>+1<CR>gv=gv
+
+" Center screen when moving
+noremap { {zz
+noremap } }zz
 
 " Back word
 noremap l b
@@ -104,6 +104,19 @@ noremap y w
 " Forward WORD
 noremap Y W
 
+" Before next t{char}
+noremap p t
+" After previous t{char}
+noremap P T
+" Repeat latest f or t
+noremap b ;
+" Repeat latest f or t reversed
+noremap B ,
+" Repeat latest / or ?
+noremap k nzz
+" Repeat latest / or ? reversed
+noremap K Nzz
+
 " Visual
 nnoremap a v
 " Cycle Visual bloc
@@ -114,6 +127,8 @@ xnoremap A V
 " Visual bloc
 nnoremap <C-A> <C-V>
 xnoremap <C-A> <C-V>
+" Reselect last visual selection
+nnoremap ga gv
 
 " Replace
 nnoremap r r
@@ -198,21 +213,6 @@ xnoremap V "0P
 nnoremap j z
 xnoremap j z
 
-" Before next t{char}
-noremap p t
-" After previous t{char}
-noremap P T
-" Repeat latest f or t
-noremap b ;
-" Repeat latest f or t reversed
-noremap B ,
-" Repeat latest / or ?
-noremap k nzz
-" Repeat latest / or ? reversed
-noremap K Nzz
-
-" Reselect last visual selection
-nnoremap ga gv
 " Lookup
 nnoremap gK K
 xnoremap gK K
