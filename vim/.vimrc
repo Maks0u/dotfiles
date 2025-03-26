@@ -52,6 +52,14 @@ inoremap ;; <Esc>
 " End of line
 noremap - $
 
+" Switch tabs in normal mode
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprevious<CR>
+
+" Indent using tab in visual mode
+xnoremap <Tab> >
+xnoremap <S-Tab> <
+
 " Colemak remap
 " Inspired by https://github.com/jooize/vim-colemak
 
@@ -247,8 +255,12 @@ function! Surround(open, close)
 endfunction
 
 function! SurroundInput()
-    let l:chars = input("Surrond: ")
-    " TODO: split chars as open and close, then call surround function
+    let l:chars = input("Surround: ")
+    if len(l:chars) != 2
+        echo "\nInvalid input"
+    else
+        call Surround(l:chars[0], l:chars[1])
+    endif
 endfunction
 
 function! DeleteSurround(char)
@@ -274,17 +286,19 @@ function! ChangeSurround(char, open, close)
     let @" = l:default_register
 endfunction
 
-xnoremap <Leader>sb :<C-u>call Surround('(',')')<CR>
-xnoremap <Leader>s( :<C-u>call Surround('(',')')<CR>
-xnoremap <Leader>s) :<C-u>call Surround('( ',' )')<CR>
-xnoremap <Leader>sB :<C-u>call Surround('{','}')<CR>
-xnoremap <Leader>s{ :<C-u>call Surround('{','}')<CR>
-xnoremap <Leader>s} :<C-u>call Surround('{ ',' }')<CR>
-xnoremap <Leader>s[ :<C-u>call Surround('[',']')<CR>
-xnoremap <Leader>s] :<C-u>call Surround('[ ',' ]')<CR>
-xnoremap <Leader>s' :<C-u>call Surround("'","'")<CR>
-xnoremap <Leader>s" :<C-u>call Surround('"','"')<CR>
-xnoremap <Leader>s` :<C-u>call Surround('`','`')<CR>
+xnoremap <Leader>s :<C-u>call SurroundInput()<CR>
+
+xnoremap <Leader>b :<C-u>call Surround('(',')')<CR>
+xnoremap <Leader>( :<C-u>call Surround('(',')')<CR>
+xnoremap <Leader>) :<C-u>call Surround('( ',' )')<CR>
+xnoremap <Leader>B :<C-u>call Surround('{','}')<CR>
+xnoremap <Leader>{ :<C-u>call Surround('{','}')<CR>
+xnoremap <Leader>} :<C-u>call Surround('{ ',' }')<CR>
+xnoremap <Leader>[ :<C-u>call Surround('[',']')<CR>
+xnoremap <Leader>] :<C-u>call Surround('[ ',' ]')<CR>
+xnoremap <Leader>' :<C-u>call Surround("'","'")<CR>
+xnoremap <Leader>" :<C-u>call Surround('"','"')<CR>
+xnoremap <Leader>` :<C-u>call Surround('`','`')<CR>
 
 nnoremap <Leader>db :<C-u>call DeleteSurround('(')<CR>
 nnoremap <Leader>d( :<C-u>call DeleteSurround('(')<CR>
