@@ -57,8 +57,8 @@ nnoremap <Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprevious<CR>
 
 " Indent using tab in visual mode
-xnoremap <Tab> >
-xnoremap <S-Tab> <
+xnoremap <Tab> >gv
+xnoremap <S-Tab> <gv
 
 " Colemak remap
 " Inspired by https://github.com/jooize/vim-colemak
