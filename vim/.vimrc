@@ -16,7 +16,7 @@ set undofile undodir=~/.vim/undo//,.,/tmp//
 set confirm
 
 " Indent using spaces
-set autoindent expandtab shiftwidth=4
+set autoindent expandtab shiftwidth=4 tabstop=4
 
 " Ignore case when searching
 set ignorecase
