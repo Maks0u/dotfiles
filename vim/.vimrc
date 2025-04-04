@@ -38,6 +38,7 @@ set nowrap
 
 " Leader key
 let mapleader=" "
+let maplocalleader=" "
 noremap <Space> <Nop>
 
 noremap <Leader>w :w<CR>
