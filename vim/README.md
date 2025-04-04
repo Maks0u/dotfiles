@@ -1,9 +1,5 @@
 # VIM config
 
-## .vimrc
-
-[.vimrc](.vimrc)
-
 ## Updating .vimrc
 
 ```bash
