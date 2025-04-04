@@ -1,21 +1,65 @@
 " Vim settings
 " Repo: https://github.com/Maks0u/env
 
+" Files encoding
+set encoding=utf-8
+
+" Internal files
+silent !mkdir -p ~/.local/state/vim/bak
+silent !mkdir -p ~/.local/state/vim/swap
+silent !mkdir -p ~/.local/state/vim/undo
+set backupdir=~/.local/state/vim/bak//,.,/tmp//
+set directory=~/.local/state/vim/swap//,.,/tmp//
+set undofile undodir=~/.local/state/vim/undo//,.,/tmp//
+
 " Prompt confirm instead of throwing an error when trying to exit without saving
 set confirm
+
+" Indent using spaces
+set autoindent expandtab shiftwidth=4 tabstop=4
 
 " Ignore case when searching
 set ignorecase
 
 " Show relative line numbers
-set relativenumber
-set number
+set number relativenumber
+
+" Show keystrokes in status line
+set showcmd
 
 " Scroll offset
 set scrolloff=10
 
+" Virtual editing (cursor can move anywhere)
+set virtualedit=all
+
+" Don't wrap lines
+set nowrap
+
+" Leader key
+let mapleader=" "
+let maplocalleader=" "
+noremap <Space> <Nop>
+
+noremap <Leader>w :w<CR>
+" noremap <Leader>wq :wq
+noremap <Leader>q :q<CR>
+
+" Escape with ; in visual mode
+xnoremap ; <Esc>
+" Escape with ;; in insert mode
+" inoremap ;; <Esc>
+
 " End of line
 noremap - $
+
+" Switch tabs in normal mode
+nnoremap <Tab> :tabnext<CR>
+nnoremap <S-Tab> :tabprevious<CR>
+
+" Indent using tab in visual mode
+xnoremap <Tab> >gv
+xnoremap <S-Tab> <gv
 
 " Colemak remap
 " Inspired by https://github.com/jooize/vim-colemak
@@ -52,6 +96,10 @@ nnoremap <C-n> :m<space>+1<CR>
 xnoremap <C-e> :m '<-2<CR>gv=gv
 xnoremap <C-n> :m '>+1<CR>gv=gv
 
+" Center screen when moving
+noremap { {zz
+noremap } }zz
+
 " Back word
 noremap l b
 " Back WORD
@@ -65,6 +113,19 @@ noremap y w
 " Forward WORD
 noremap Y W
 
+" Before next t{char}
+noremap p t
+" After previous t{char}
+noremap P T
+" Repeat latest f or t
+noremap b ;
+" Repeat latest f or t reversed
+noremap B ,
+" Repeat latest / or ?
+noremap k nzz
+" Repeat latest / or ? reversed
+noremap K Nzz
+
 " Visual
 nnoremap a v
 " Cycle Visual bloc
@@ -75,6 +136,8 @@ xnoremap A V
 " Visual bloc
 nnoremap <C-A> <C-V>
 xnoremap <C-A> <C-V>
+" Reselect last visual selection
+nnoremap ga gv
 
 " Replace
 nnoremap r r
@@ -90,7 +153,6 @@ nnoremap s i
 " Example: viw -> asw (Select inner word)
 onoremap s i
 xnoremap s i
-" onoremap s i
 " Insert start of line
 nnoremap S I
 xnoremap S I
@@ -118,27 +180,18 @@ nnoremap O O<Esc>
 nnoremap o o<Esc>
 
 " Uppercase selection
-xnoremap O U
+xnoremap <Leader>O U
 " Lowercase selection
-xnoremap o u
+xnoremap <Leader>o u
 " Uppercase
 noremap gO gU
 " Lowercase
 noremap go gu
 
-" Escape with ; in visual mode
-xnoremap ; <Esc>
-" Escape with ;; in insert mode
-inoremap ;; <Esc>
-
 " Save and quit
 noremap J ZZ
 " Quit without saving
 noremap Q ZQ
-
-" Enter command mode with <space>
-nnoremap <space> :
-xnoremap <space> :
 
 " Undo
 nnoremap z u
@@ -147,11 +200,11 @@ nnoremap Z <C-R>
 " Undo all latest changes on line
 nnoremap gz U
 " Cut
-nnoremap x x
-xnoremap x x
+nnoremap x vygvx
+xnoremap x ygvx
 " Cut line
-nnoremap X dd
-xnoremap X dd
+nnoremap X yydd
+xnoremap X ygvx
 " Copy
 nnoremap c y
 xnoremap c y
@@ -160,33 +213,15 @@ nnoremap cc yy
 nnoremap C yy
 " Paste
 nnoremap v p
-xnoremap v p
 nnoremap V P
-xnoremap V P
-nnoremap gv gp
-xnoremap gv gp
-nnoremap gV gP
-xnoremap gV gP
+" Always paste prevously yanked text (not deleted text)
+xnoremap v "0P
+xnoremap V "0P
 
 " 
 nnoremap j z
 xnoremap j z
 
-" Before next t{char}
-noremap p t
-" After previous t{char}
-noremap P T
-" Repeat latest f or t
-noremap b ;
-" Repeat latest f or t reversed
-noremap B ,
-" Repeat latest / or ?
-noremap k nzz
-" Repeat latest / or ? reversed
-noremap K Nzz
-
-" Reselect last visual selection
-nnoremap ga gv
 " Lookup
 nnoremap gK K
 xnoremap gK K
@@ -209,3 +244,132 @@ xnoremap <C-W>e <C-W>k
 " Window right
 nnoremap <C-W>i <C-W>l
 xnoremap <C-W>i <C-W>l
+
+"
+" Custom surround actions
+"
+function! Surround(open, close)
+    let l:default_register = @"
+    execute "normal! gvc" . a:open
+    execute "normal! pa" . a:close
+    let @" = l:default_register
+endfunction
+
+function! SurroundInput()
+    let l:chars = input("Surround: ")
+    if len(l:chars) != 2
+        echo "\nInvalid input"
+    else
+        call Surround(l:chars[0], l:chars[1])
+    endif
+endfunction
+
+function! DeleteSurround(char)
+    let l:default_register = @"
+    if a:char == "'" || a:char == '"' || a:char == "`"
+        execute "normal! vi" . a:char . "yva" . a:char . "h\"_dP"
+    else
+        execute "normal! vi" . a:char . "yva" . a:char . "\"_dP"
+    endif
+    let @" = l:default_register
+endfunction
+
+function! ChangeSurround(char, open, close)
+    let l:default_register = @"
+    if a:char == "'" || a:char == '"' || a:char == '`'
+        execute "normal! vi" . a:char . "yva" . a:char . "h\"_d"
+    else
+        execute "normal! vi" . a:char . "yva" . a:char . "\"_d"
+    endif
+    execute "normal! i" . a:open
+    execute "normal! p"
+    execute "normal! a" . a:close
+    let @" = l:default_register
+endfunction
+
+xnoremap <Leader>s :<C-u>call SurroundInput()<CR>
+
+xnoremap <Leader>b :<C-u>call Surround('(',')')<CR>
+xnoremap <Leader>( :<C-u>call Surround('(',')')<CR>
+xnoremap <Leader>) :<C-u>call Surround('( ',' )')<CR>
+xnoremap <Leader>B :<C-u>call Surround('{','}')<CR>
+xnoremap <Leader>{ :<C-u>call Surround('{','}')<CR>
+xnoremap <Leader>} :<C-u>call Surround('{ ',' }')<CR>
+xnoremap <Leader>[ :<C-u>call Surround('[',']')<CR>
+xnoremap <Leader>] :<C-u>call Surround('[ ',' ]')<CR>
+xnoremap <Leader>' :<C-u>call Surround("'","'")<CR>
+xnoremap <Leader>" :<C-u>call Surround('"','"')<CR>
+xnoremap <Leader>` :<C-u>call Surround('`','`')<CR>
+
+nnoremap <Leader>db :<C-u>call DeleteSurround('(')<CR>
+nnoremap <Leader>d( :<C-u>call DeleteSurround('(')<CR>
+nnoremap <Leader>d) :<C-u>call DeleteSurround('(')<CR>
+nnoremap <Leader>dB :<C-u>call DeleteSurround('{')<CR>
+nnoremap <Leader>d{ :<C-u>call DeleteSurround('{')<CR>
+nnoremap <Leader>d} :<C-u>call DeleteSurround('{')<CR>
+nnoremap <Leader>d[ :<C-u>call DeleteSurround('[')<CR>
+nnoremap <Leader>d] :<C-u>call DeleteSurround('[')<CR>
+nnoremap <Leader>d' :<C-u>call DeleteSurround("'")<CR>
+nnoremap <Leader>d" :<C-u>call DeleteSurround('"')<CR>
+nnoremap <Leader>d` :<C-u>call DeleteSurround('`')<CR>
+
+nnoremap <Leader>cbB :<C-u>call ChangeSurround('(','{','}')<CR>
+nnoremap <Leader>cb{ :<C-u>call ChangeSurround('(','{','}')<CR>
+nnoremap <Leader>cb} :<C-u>call ChangeSurround('(','{','}')<CR>
+nnoremap <Leader>cb[ :<C-u>call ChangeSurround('(','[',']')<CR>
+nnoremap <Leader>cb] :<C-u>call ChangeSurround('(','[',']')<CR>
+nnoremap <Leader>cb' :<C-u>call ChangeSurround('(',"'","'")<CR>
+nnoremap <Leader>cb" :<C-u>call ChangeSurround('(','"','"')<CR>
+nnoremap <Leader>cb` :<C-u>call ChangeSurround('(','`','`')<CR>
+
+nnoremap <Leader>cBb :<C-u>call ChangeSurround('{','(',')')<CR>
+nnoremap <Leader>cB( :<C-u>call ChangeSurround('{','(',')')<CR>
+nnoremap <Leader>cB) :<C-u>call ChangeSurround('{','(',')')<CR>
+nnoremap <Leader>cB[ :<C-u>call ChangeSurround('{','[',']')<CR>
+nnoremap <Leader>cB] :<C-u>call ChangeSurround('{','[',']')<CR>
+nnoremap <Leader>cB' :<C-u>call ChangeSurround('{',"'","'")<CR>
+nnoremap <Leader>cB" :<C-u>call ChangeSurround('{','"','"')<CR>
+nnoremap <Leader>cB` :<C-u>call ChangeSurround('{','`','`')<CR>
+
+nnoremap <Leader>c[b :<C-u>call ChangeSurround('[','(',')')<CR>
+nnoremap <Leader>c[( :<C-u>call ChangeSurround('[','(',')')<CR>
+nnoremap <Leader>c[) :<C-u>call ChangeSurround('[','(',')')<CR>
+nnoremap <Leader>c[B :<C-u>call ChangeSurround('[','{','}')<CR>
+nnoremap <Leader>c[{ :<C-u>call ChangeSurround('[','{','}')<CR>
+nnoremap <Leader>c[} :<C-u>call ChangeSurround('[','{','}')<CR>
+nnoremap <Leader>c[' :<C-u>call ChangeSurround('[',"'","'")<CR>
+nnoremap <Leader>c[" :<C-u>call ChangeSurround('[','"','"')<CR>
+nnoremap <Leader>c[` :<C-u>call ChangeSurround('[','`','`')<CR>
+
+nnoremap <Leader>c'b :<C-u>call ChangeSurround("'",'(',')')<CR>
+nnoremap <Leader>c'( :<C-u>call ChangeSurround("'",'(',')')<CR>
+nnoremap <Leader>c') :<C-u>call ChangeSurround("'",'(',')')<CR>
+nnoremap <Leader>c'B :<C-u>call ChangeSurround("'",'{','}')<CR>
+nnoremap <Leader>c'{ :<C-u>call ChangeSurround("'",'{','}')<CR>
+nnoremap <Leader>c'} :<C-u>call ChangeSurround("'",'{','}')<CR>
+nnoremap <Leader>c'[ :<C-u>call ChangeSurround("'",'[',']')<CR>
+nnoremap <Leader>c'] :<C-u>call ChangeSurround("'",'[',']')<CR>
+nnoremap <Leader>c'" :<C-u>call ChangeSurround("'",'"','"')<CR>
+nnoremap <Leader>c'` :<C-u>call ChangeSurround("'",'`','`')<CR>
+
+nnoremap <Leader>c"b :<C-u>call ChangeSurround('"','(',')')<CR>
+nnoremap <Leader>c"( :<C-u>call ChangeSurround('"','(',')')<CR>
+nnoremap <Leader>c") :<C-u>call ChangeSurround('"','(',')')<CR>
+nnoremap <Leader>c"B :<C-u>call ChangeSurround('"','{','}')<CR>
+nnoremap <Leader>c"{ :<C-u>call ChangeSurround('"','{','}')<CR>
+nnoremap <Leader>c"} :<C-u>call ChangeSurround('"','{','}')<CR>
+nnoremap <Leader>c"[ :<C-u>call ChangeSurround('"','[',']')<CR>
+nnoremap <Leader>c"] :<C-u>call ChangeSurround('"','[',']')<CR>
+nnoremap <Leader>c"' :<C-u>call ChangeSurround('"',"'","'")<CR>
+nnoremap <Leader>c"` :<C-u>call ChangeSurround('"','`','`')<CR>
+
+nnoremap <Leader>c`b :<C-u>call ChangeSurround('`','(',')')<CR>
+nnoremap <Leader>c`( :<C-u>call ChangeSurround('`','(',')')<CR>
+nnoremap <Leader>c`) :<C-u>call ChangeSurround('`','(',')')<CR>
+nnoremap <Leader>c`B :<C-u>call ChangeSurround('`','{','}')<CR>
+nnoremap <Leader>c`{ :<C-u>call ChangeSurround('`','{','}')<CR>
+nnoremap <Leader>c`} :<C-u>call ChangeSurround('`','{','}')<CR>
+nnoremap <Leader>c`[ :<C-u>call ChangeSurround('`','[',']')<CR>
+nnoremap <Leader>c`] :<C-u>call ChangeSurround('`','[',']')<CR>
+nnoremap <Leader>c`' :<C-u>call ChangeSurround('`',"'","'")<CR>
+nnoremap <Leader>c`" :<C-u>call ChangeSurround('`','"','"')<CR>
