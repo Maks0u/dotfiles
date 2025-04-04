@@ -47,7 +47,7 @@ noremap <Leader>q :q<CR>
 " Escape with ; in visual mode
 xnoremap ; <Esc>
 " Escape with ;; in insert mode
-inoremap ;; <Esc>
+" inoremap ;; <Esc>
 
 " End of line
 noremap - $
