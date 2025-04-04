@@ -5,12 +5,12 @@
 set encoding=utf-8
 
 " Internal files
-silent !mkdir -p ~/.vim/bak
-silent !mkdir -p ~/.vim/swap
-silent !mkdir -p ~/.vim/undo
-set backupdir=~/.vim/bak//,.,/tmp//
-set directory=~/.vim/swap//,.,/tmp//
-set undofile undodir=~/.vim/undo//,.,/tmp//
+silent !mkdir -p ~/.local/state/vim/bak
+silent !mkdir -p ~/.local/state/vim/swap
+silent !mkdir -p ~/.local/state/vim/undo
+set backupdir=~/.local/state/vim/bak//,.,/tmp//
+set directory=~/.local/state/vim/swap//,.,/tmp//
+set undofile undodir=~/.local/state/vim/undo//,.,/tmp//
 
 " Prompt confirm instead of throwing an error when trying to exit without saving
 set confirm
