@@ -61,6 +61,9 @@ nnoremap <S-Tab> :tabprevious<CR>
 xnoremap <Tab> >gv
 xnoremap <S-Tab> <gv
 
+" Clear highlights on search when pressing <Esc> in normal mode
+nnoremap <silent> <Esc> :noh<CR>
+
 " Colemak remap
 " Inspired by https://github.com/jooize/vim-colemak
 
