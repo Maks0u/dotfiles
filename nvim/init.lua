@@ -1,6 +1,10 @@
 -- NeoVim init.lua
 -- Repo: https://github.com/Maks0u/env
--- Based on kickstart.nvim (https://github.com/nvim-lua/kickstart.nvim)
+--
+-- Inspirations
+--   kickstart.nvim         (https://github.com/nvim-lua/kickstart.nvim)
+--   kickstart-modular.nvim (https://github.com/dam9000/kickstart-modular.nvim)
+--   Melkeydev config       (https://github.com/Melkeydev/neovim)
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -12,6 +16,6 @@ vim.keymap.set({'n','x'}, '<Space>', '')
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-require('options')
-require('keymaps')
-require('lazy-config')
+require 'config.options'
+require 'config.keymaps'
+require 'config.lazy'

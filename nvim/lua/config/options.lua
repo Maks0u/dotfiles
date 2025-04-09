@@ -31,9 +31,14 @@ vim.opt.tabstop = 4
 -- Show keystrokes in status line
 vim.opt.showcmd = true
 
+-- Preview substitutions
+vim.opt.inccommand = 'split'
+
 -- Virtual editing (cursor can move anywhere)
 vim.opt.virtualedit = 'all'
--- nowrap
+
+-- Don't wrap lines
+vim.opt.wrap = false
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
