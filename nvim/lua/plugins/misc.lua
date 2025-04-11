@@ -12,6 +12,18 @@ return {
     { -- Show pending keybinds
         'folke/which-key.nvim',
         name = 'WhichKey',
-        event = 'VeryLazy'
-    }
+        event = 'VeryLazy',
+    },
+    { -- Notification fidget
+        'j-hui/fidget.nvim',
+        name = 'Fidget',
+        opts = {},
+    },
+    { -- Highlight todo, notes, etc in comments
+        'folke/todo-comments.nvim',
+        name = 'todo-comments',
+        event = 'VimEnter',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = { signs = false }
+    },
 }

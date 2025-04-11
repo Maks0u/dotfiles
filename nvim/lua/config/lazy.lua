@@ -18,6 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     checker = { enabled = true }, -- automatically check for plugin updates
     spec = {
-        { import = 'plugins' } -- Import plugins from `nvim/lua/plugins/*.lua`
+        { import = 'plugins' }    -- Import plugins from `nvim/lua/plugins/*.lua`
     }
 })
