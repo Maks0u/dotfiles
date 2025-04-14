@@ -1,5 +1,16 @@
 -- Miscellaneous plugins
 return {
+    { -- status line
+        'nvim-lualine/lualine.nvim',
+        name = 'lualine',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {},
+    },
+    { -- Show pending keybinds
+        'folke/which-key.nvim',
+        name = 'WhichKey',
+        event = 'VeryLazy',
+    },
     { -- Indentation guides and highlight
         'lukas-reineke/indent-blankline.nvim',
         name = 'IndentBlankline',
@@ -8,11 +19,6 @@ return {
         ---@module 'ibl'
         ---@type ibl.config
         opts = {},
-    },
-    { -- Show pending keybinds
-        'folke/which-key.nvim',
-        name = 'WhichKey',
-        event = 'VeryLazy',
     },
     { -- Notification fidget
         'j-hui/fidget.nvim',
@@ -24,6 +30,6 @@ return {
         name = 'todo-comments',
         event = 'VimEnter',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        opts = { signs = false }
+        opts = { signs = false },
     },
 }

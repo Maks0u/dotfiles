@@ -30,6 +30,9 @@ vim.opt.tabstop = 4
 -- Show keystrokes in status line
 vim.opt.showcmd = true
 
+-- Don't show the mode, since it's already in the status line
+vim.opt.showmode = false
+
 -- Preview substitutions
 vim.opt.inccommand = 'split'
 
