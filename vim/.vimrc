@@ -79,7 +79,7 @@ xnoremap <S-Tab> <gv
 
 " Left
 noremap h h
-noremap H 10h
+noremap H ^
 " Down
 noremap n j
 noremap N 5j
@@ -88,7 +88,7 @@ noremap e k
 noremap E 5k
 " Right
 noremap i l
-noremap I 10l
+noremap I $
 
 " Move lines up and down
 nnoremap <C-e> :m<space>-2<CR>
