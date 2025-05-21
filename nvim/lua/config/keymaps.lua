@@ -28,13 +28,13 @@ vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Outdent' })
 --    n    |    j
 
 vim.keymap.set('', 'h', 'h',   { desc = 'Left' })
-vim.keymap.set('', 'H', '10h', { desc = '10 Left' })
+vim.keymap.set('', 'H', '^',   { desc = 'Start of line' })
 vim.keymap.set('', 'n', 'j',   { desc = 'Down' })
 vim.keymap.set('', 'N', '10j', { desc = '10 Down' })
 vim.keymap.set('', 'e', 'k',   { desc = 'Up' })
 vim.keymap.set('', 'E', '10k', { desc = '10 Up' })
 vim.keymap.set('', 'i', 'l',   { desc = 'Right' })
-vim.keymap.set('', 'I', '10l', { desc = '10 Right' })
+vim.keymap.set('', 'I', '$',   { desc = 'End of line' })
 
 vim.keymap.set('', 'J', 'ZZ', { desc = 'Save and quit' })
 vim.keymap.set('', 'Q', 'ZQ', { desc = 'Quit without saving' })
