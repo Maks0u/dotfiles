@@ -21,6 +21,9 @@ return {
         'catppuccin/nvim',
         name = 'Catppuccin',
         priority = 1000,
+        opts = {
+            transparent_background = true,
+        },
     },
     {
         'folke/tokyonight.nvim',
