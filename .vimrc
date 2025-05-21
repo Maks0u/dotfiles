@@ -1,5 +1,5 @@
 " Vim settings
-" Repo: https://github.com/Maks0u/env
+" Repo: https://github.com/Maks0u/dotfiles
 
 " Files encoding
 set encoding=utf-8

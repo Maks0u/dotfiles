@@ -4,7 +4,7 @@
 
 ```bash
 mv ~/.vimrc ~/.vimrc.bak
-curl -fsSL https://raw.githubusercontent.com/Maks0u/env/refs/heads/main/vim/.vimrc --output ~/.vimrc
+curl -fsSL https://raw.githubusercontent.com/Maks0u/dotfiles/refs/heads/main/.vimrc --output ~/.vimrc
 ```
 
 ## Plugins

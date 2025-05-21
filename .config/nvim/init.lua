@@ -1,5 +1,5 @@
 -- NeoVim init.lua
--- Repo: https://github.com/Maks0u/env
+-- Repo: https://github.com/Maks0u/dotfiles
 --
 -- Inspirations
 --   kickstart.nvim         (https://github.com/nvim-lua/kickstart.nvim)

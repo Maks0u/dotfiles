@@ -1,0 +1,6 @@
+\.git*
+
+^/README.md
+
+^/docs
+^/nuphy_air75_v2
