@@ -32,4 +32,12 @@ return {
         dependencies = { 'nvim-lua/plenary.nvim' },
         opts = { signs = false },
     },
+    {
+        'brenoprata10/nvim-highlight-colors',
+        name = 'highlight-colors',
+        event = 'VeryLazy',
+        opts = {
+            render = 'background'
+        },
+    },
 }
