@@ -28,4 +28,10 @@ return {
             },
         },
     },
+    {
+        'sindrets/diffview.nvim',
+        name = 'Diffview',
+        event = 'VeryLazy',
+        opts = {},
+    },
 }
