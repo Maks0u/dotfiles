@@ -9,22 +9,28 @@
 
 Simply clone the repo in your $HOME directory and run `stow` to create symlinks.
 
-```
+```bash
 git clone --depth=1 https://github.com/Maks0u/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 stow .
 ```
 
-It is possible to "force" stow on existing config files using the `adopt` flag.  
-Make sure there is no uncommited changes you want to keep as it will override repo files with existing config files.
+To delete old symlinks and recreate them use `--restow`
 
+```bash
+stow --restow .
 ```
+
+It is possible to "force" stow on existing config files using the `adopt` flag.  
+Make sure there are no uncommited changes you want to keep as it will override repo files with existing config files.
+
+```bash
 stow --adopt .
 ```
 
 You can "dry-run" stow using
 
-```
+```bash
 stow --simulate --verbose .
 ```
 

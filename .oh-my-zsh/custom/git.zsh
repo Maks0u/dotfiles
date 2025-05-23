@@ -1,4 +1,6 @@
 # git log graph with custom columns
+# $1: width (default terminal width)
+# $2: commit limit (default 500)
 git_log_columns() {
     local width=$((${1:-$(tput cols)} - 1))
     local hashWidth=14
@@ -16,10 +18,15 @@ git_log_columns() {
         --pretty=format:"${config}${hash}${message}${author}${date} ${decorate}"
 }
 
+# alias for git_log_columns
 gloc() {
     git_log_columns "${1:-80}" "${@}"
 }
 
+# watch alias for git_log_columns
 glocw() {
-    watch --color --interval 1 --no-title -x bash -c '. ~/dotfiles/.zshrc.d/functions.sh; gloc $(tput cols) 50'
+    watch --color --interval 1 --no-title -x zsh -c '. $ZSH/custom/git.zsh; gloc $(tput cols) 50'
 }
+
+alias gsbw='watch -ctn 1 git status --short --branch'
+alias gssw='watch -ctn 1 git status --short'
