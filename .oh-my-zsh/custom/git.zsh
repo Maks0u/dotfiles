@@ -15,7 +15,7 @@ git_log_columns() {
     local author="%C(blue)%<(${authorWidth},trunc)%an%C(auto)"
     local date="%C(green)%>|($width,trunc)%ar%C(auto)"
 
-    git log --all --graph --color \
+    git log --graph --color \
         --pretty=format:"${config}${hash} ${decorate}  ${message} ${author} ${date}" \
         "${@}"
 }
@@ -25,12 +25,20 @@ gloc() {
     git_log_columns "${@}"
 }
 
+# alias for git_log_columns --all
+gloca() {
+    local width=$((${1:-$(tput cols)} - 1))
+    [[ ! -z $1 ]] && shift
+    git_log_columns $width --all "${@}"
+}
+
 # watch alias for git_log_columns
 glocw() {
-    watch --color --interval 3 --no-title -x zsh -c '. $ZSH/custom/git.zsh; gloc $(tput cols) -60'
+    watch --color --interval 3 --no-title \
+        -x zsh -c '. $ZSH/custom/git.zsh; git_log_columns $(tput cols) -60 --all'
 }
 
 # git status short watch
-alias gssw='watch -ctn 3 git status --short'
+alias gssw='watch -ctn 3 git -c color.ui=always status --short'
 # git status branch watch
-alias gsbw='watch -ctn 3 git status --short --branch'
+alias gsbw='watch -ctn 3 git -c color.ui=always status --short --branch'
