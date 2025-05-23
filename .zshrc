@@ -153,7 +153,6 @@ source /opt/hurl/hurl-4.3.0/completions/_hurlfmt
 alias full-upgrade='sudo apt update && sudo apt full-upgrade && sudo apt autoremove --purge'
 #alias ll='ls -alh'
 alias nn='sudo netstat -antupe'
-alias commit='gcmsg'
 
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'

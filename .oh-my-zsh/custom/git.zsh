@@ -42,3 +42,19 @@ glocw() {
 alias gssw='watch -ctn 3 git -c color.ui=always status --short'
 # git status branch watch
 alias gsbw='watch -ctn 3 git -c color.ui=always status --short --branch'
+
+# commit function with gum (https://github.com/charmbracelet/gum)
+commit() {
+    local TYPE=$(gum filter "chore" "docs" "feat" "fix")
+    local SCOPE=$(gum input --placeholder "scope")
+    test -n "${SCOPE}" && SCOPE="(${SCOPE})"
+
+    local SUMMARY=$(gum input --value "${TYPE}${SCOPE}: " --placeholder "message")
+    local DESCRIPTION=$(gum write --placeholder "Details")
+
+    bat <<<"${SUMMARY}
+
+${DESCRIPTION}"
+
+    gum confirm "Commit changes?" && git commit -m "${SUMMARY}" -m "${DESCRIPTION}"
+}
