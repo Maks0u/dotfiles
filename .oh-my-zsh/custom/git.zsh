@@ -1,13 +1,22 @@
 # git log graph with custom columns
 # $1: width (default terminal width)
 git_log_columns() {
-    local width=$((${1:-$(tput cols)} - 1))
-    [[ ! -z $1 ]] && shift
+    # Calculate viewport width
+    local terminalWidth=$(tput cols)
+    local width=$((${terminalWidth} - 1))
 
-    local hashWidth=14
+    # Calculate maximum width of the graph
+    local graphWidth=$(git log --graph --pretty=format:'' "${@}" |
+        awk '{ print length }' |
+        sort --numeric-sort --reverse --unique |
+        head -n 1)
+
+    # Configure column widths
+    local hashWidth=$((graphWidth + 7))
     local authorWidth=12
     local dateWidth=12
 
+    # Setup format strings
     local config="%w(${width})%C(auto)"
     local hash="%>|(${hashWidth})%C(blue)%h%C(auto)"
     local decorate="%D"
@@ -15,6 +24,7 @@ git_log_columns() {
     local author="%C(blue)%<(${authorWidth},trunc)%an%C(auto)"
     local date="%C(green)%>|($width,trunc)%ar%C(auto)"
 
+    # Run git log with the calculated format
     git log --graph --color \
         --pretty=format:"${config}${hash} ${decorate}  ${message} ${author} ${date}" \
         "${@}"
@@ -27,21 +37,19 @@ gloc() {
 
 # alias for git_log_columns --all
 gloca() {
-    local width=$((${1:-$(tput cols)} - 1))
-    [[ ! -z $1 ]] && shift
-    git_log_columns $width --all "${@}"
+    git_log_columns --all "${@}"
 }
 
 # watch alias for git_log_columns
 glocw() {
-    watch --color --interval 3 --no-title \
-        -x zsh -c '. $ZSH/custom/git.zsh; git_log_columns $(tput cols) -60 --all'
+    watch --color --interval 2 --no-title \
+        -x zsh -c '. $ZSH/custom/git.zsh; git_log_columns -60 --all'
 }
 
 # git status short watch
-alias gssw='watch -ctn 3 git -c color.ui=always status --short'
+alias gssw='watch -ctn 2 git -c color.ui=always status --short'
 # git status branch watch
-alias gsbw='watch -ctn 3 git -c color.ui=always status --short --branch'
+alias gsbw='watch -ctn 2 git -c color.ui=always status --short --branch'
 
 # commit function with gum (https://github.com/charmbracelet/gum)
 commit() {
@@ -52,6 +60,7 @@ commit() {
     local SUMMARY=$(gum input --value "${TYPE}${SCOPE}: " --placeholder "message")
     local DESCRIPTION=$(gum write --placeholder "Details")
 
+    git status --short --branch
     bat <<<"${SUMMARY}
 
 ${DESCRIPTION}"
