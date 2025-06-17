@@ -30,10 +30,7 @@ git_log_columns() {
         "${@}"
 }
 
-# alias for git_log_columns
-gloc() {
-    git_log_columns "${@}"
-}
+alias gloc='git_log_columns'
 
 # alias for git_log_columns --all
 gloca() {
@@ -51,6 +48,33 @@ alias gssw='watch -ctn 2 git -c color.ui=always status --short'
 # git status branch watch
 alias gsbw='watch -ctn 2 git -c color.ui=always status --short --branch'
 
+# Show git diff with bat
+bat_diff() {
+    local diff=$(git diff --color=always ${1})
+    if [[ -z "${diff}" ]]; then
+        echo "No changes."
+    else
+        echo "${diff}" | bat --file-name="${1:-Current} diff" --language=diff --paging=always --wrap=never
+    fi
+}
+alias bd='bat_diff'
+
+# Show git diff for a specific commit with bat_diff
+commit_diff() {
+    local commit_hash=${1:-HEAD}
+    bat_diff "${commit_hash}^!"
+}
+alias cdd='commit_diff'
+
+alias gdc='git diff --compact-summary'
+
+# Show compact summary of git diff for a specific commit
+commit_diff_compact() {
+    local commit_hash=${1:-HEAD}
+    git diff --compact-summary "${commit_hash}^!"
+}
+alias cdc='commit_diff_compact'
+
 # commit function with gum (https://github.com/charmbracelet/gum)
 commit() {
     local TYPE=$(gum filter "chore" "docs" "feat" "fix")
@@ -61,7 +85,7 @@ commit() {
     local DESCRIPTION=$(gum write --placeholder "Details")
 
     git status --short --branch
-    bat <<<"${SUMMARY}
+    bat --file-name="Commit summary" <<<"${SUMMARY}
 
 ${DESCRIPTION}"
 
