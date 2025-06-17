@@ -29,13 +29,10 @@ git_log_columns() {
         --pretty=format:"${config}${hash} ${decorate}  ${message} ${author} ${date}" \
         "${@}"
 }
-
 alias gloc='git_log_columns'
-
-# alias for git_log_columns --all
-gloca() {
-    git_log_columns --all "${@}"
-}
+alias gloca='git_log_columns --all'
+# Use git-log completions
+compdef _git git_log_columns=git-log
 
 # watch alias for git_log_columns
 glocw() {
@@ -58,6 +55,8 @@ bat_diff() {
     fi
 }
 alias bd='bat_diff'
+# Use git-diff completions
+compdef _git bat_diff=git-diff
 
 # Show git diff for a specific commit with bat_diff
 commit_diff() {
@@ -65,8 +64,8 @@ commit_diff() {
     bat_diff "${commit_hash}^!"
 }
 alias cdd='commit_diff'
-
-alias gdc='git diff --compact-summary'
+# Use git-diff completions
+compdef _git commit_diff=git-diff
 
 # Show compact summary of git diff for a specific commit
 commit_diff_compact() {
@@ -74,6 +73,10 @@ commit_diff_compact() {
     git diff --compact-summary "${commit_hash}^!"
 }
 alias cdc='commit_diff_compact'
+# Use git-diff completions
+compdef _git commit_diff_compact=git-diff
+
+alias gdc='git diff --compact-summary'
 
 # commit function with gum (https://github.com/charmbracelet/gum)
 commit() {
