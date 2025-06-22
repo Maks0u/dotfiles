@@ -36,7 +36,7 @@ commit_diff() {
     bat_diff "${commit_hash}^!"
 }
 # Use git-diff completions
-compdef _git commit_diff=git-diff
+compdef _git commit_diff=git-show-branch
 # Aliases
 alias cdd='commit_diff'
 
@@ -46,7 +46,7 @@ commit_diff_compact() {
     git diff --compact-summary "${commit_hash}^!"
 }
 # Use git-diff completions
-compdef _git commit_diff_compact=git-diff
+compdef _git commit_diff_compact=git-show-branch
 # Aliases
 alias cdc='commit_diff_compact'
 
