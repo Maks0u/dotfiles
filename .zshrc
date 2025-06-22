@@ -191,5 +191,7 @@ alias kokoro='/home/maxime/dev/tts/kokoro-fastapi.sh'
 
 alias serve='deno run --allow-net --allow-read jsr:@maks0u/cli-serve'
 
+alias aws='snap run aws-cli.aws'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
