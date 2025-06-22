@@ -1,44 +1,15 @@
+PLUGIN_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/custom-git"
+
 # git log graph with custom columns
-# $1: width (default terminal width)
 git_log_columns() {
-    # Calculate viewport width
-    local terminalWidth=$(tput cols)
-    local width=$((${terminalWidth} - 1))
-
-    # Calculate maximum width of the graph
-    local graphWidth=$(git log --graph --pretty=format:'' "${@}" |
-        awk '{ print length }' |
-        sort --numeric-sort --reverse --unique |
-        head -n 1)
-
-    # Configure column widths
-    local hashWidth=$((graphWidth + 7))
-    local authorWidth=12
-    local dateWidth=12
-
-    # Setup format strings
-    local config="%w(${width})%C(auto)"
-    local hash="%>|(${hashWidth})%C(blue)%h%C(auto)"
-    local decorate="%D"
-    local message="%<|($((width - authorWidth - dateWidth - 2)),trunc)%s"
-    local author="%C(blue)%<(${authorWidth},trunc)%an%C(auto)"
-    local date="%C(green)%>|($width,trunc)%ar%C(auto)"
-
-    # Run git log with the calculated format
-    git log --graph --color \
-        --pretty=format:"${config}${hash} ${decorate}  ${message} ${author} ${date}" \
-        "${@}"
+    "${PLUGIN_PATH}/git_log_columns.zsh" "${@}"
 }
-alias gloc='git_log_columns'
-alias gloca='git_log_columns --all'
 # Use git-log completions
 compdef _git git_log_columns=git-log
-
-# watch alias for git_log_columns
-glocw() {
-    watch --color --interval 2 --no-title \
-        -x zsh -c '. $ZSH/custom/git.zsh; git_log_columns -60 --all'
-}
+# Aliases
+alias gloc='git_log_columns'
+alias gloca='git_log_columns --all'
+alias glocw="watch --color --interval 2 --no-title -x zsh -c '${PLUGIN_PATH}/git_log_columns.zsh -60 --all'"
 
 # git status short watch
 alias gssw='watch -ctn 2 git -c color.ui=always status --short'
@@ -47,34 +18,37 @@ alias gsbw='watch -ctn 2 git -c color.ui=always status --short --branch'
 
 # Show git diff with bat
 bat_diff() {
-    local diff=$(git diff --color=always ${1})
+    local diff=$(git diff --color=always ${@})
     if [[ -z "${diff}" ]]; then
         echo "No changes."
     else
-        echo "${diff}" | bat --file-name="${1:-Current} diff" --language=diff --paging=always --wrap=never
+        echo "${diff}" | bat --file-name="Diff" --language=diff --paging=always --wrap=never
     fi
 }
-alias bd='bat_diff'
 # Use git-diff completions
 compdef _git bat_diff=git-diff
+# Aliases
+alias bd='bat_diff'
 
 # Show git diff for a specific commit with bat_diff
 commit_diff() {
     local commit_hash=${1:-HEAD}
     bat_diff "${commit_hash}^!"
 }
-alias cdd='commit_diff'
 # Use git-diff completions
 compdef _git commit_diff=git-diff
+# Aliases
+alias cdd='commit_diff'
 
 # Show compact summary of git diff for a specific commit
 commit_diff_compact() {
     local commit_hash=${1:-HEAD}
     git diff --compact-summary "${commit_hash}^!"
 }
-alias cdc='commit_diff_compact'
 # Use git-diff completions
 compdef _git commit_diff_compact=git-diff
+# Aliases
+alias cdc='commit_diff_compact'
 
 alias gdc='git diff --compact-summary'
 

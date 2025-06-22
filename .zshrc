@@ -101,6 +101,7 @@ plugins=(
 	z
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+    custom-git
 )
 
 source $ZSH/oh-my-zsh.sh
