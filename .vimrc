@@ -93,8 +93,8 @@ noremap I $
 " Move lines up and down
 nnoremap <C-e> :m<space>-2<CR>
 nnoremap <C-n> :m<space>+1<CR>
-xnoremap <C-e> :m '<-2<CR>gv=gv
-xnoremap <C-n> :m '>+1<CR>gv=gv
+xnoremap <C-e> :m<space>'<-2<CR>gv=gv
+xnoremap <C-n> :m<space>'>+1<CR>gv=gv
 
 " Center screen when moving
 noremap { {zz

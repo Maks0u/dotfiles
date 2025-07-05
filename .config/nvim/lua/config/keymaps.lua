@@ -36,6 +36,11 @@ vim.keymap.set('', 'E', '10k', { desc = '10 Up' })
 vim.keymap.set('', 'i', 'l',   { desc = 'Right' })
 vim.keymap.set('', 'I', '$',   { desc = 'End of line' })
 
+vim.keymap.set('n', '<M-e>', ':m<space>-2<CR>', { desc = 'Move line up' })
+vim.keymap.set('n', '<M-n>', ':m<space>+1<CR>', { desc = 'Move line down' })
+vim.keymap.set('x', '<M-e>', ':m<space>\'<-2<CR>gv=gv', { desc = 'Move selection up' })
+vim.keymap.set('x', '<M-n>', ':m<space>\'>+1<CR>gv=gv', { desc = 'Move selection down' })
+
 vim.keymap.set('', 'J', 'ZZ', { desc = 'Save and quit' })
 vim.keymap.set('', 'Q', 'ZQ', { desc = 'Quit without saving' })
 vim.keymap.set('', '<Leader>w', ':w<CR>', { desc = 'Save' })
