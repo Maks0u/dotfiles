@@ -9,6 +9,7 @@ compdef _git git_log_columns=git-log
 # Aliases
 alias gloc='git_log_columns'
 alias gloca='git_log_columns --all'
+alias gg='git_log_columns --all -25 | cat'
 alias glocw="watch --color --interval 2 --no-title -x zsh -c '${PLUGIN_PATH}/git_log_columns.zsh -60 --all'"
 
 # git status short watch

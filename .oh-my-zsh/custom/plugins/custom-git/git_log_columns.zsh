@@ -25,3 +25,4 @@ date="%C(green)%>|($width,trunc)%ar%C(auto)"
 LANG=C.UTF-8 git log --graph --color \
     --pretty=format:"${config}${hash} ${decorate}  ${message} ${author} ${date}" \
     "${@}"
+echo
