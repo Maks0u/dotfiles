@@ -152,8 +152,10 @@ source /opt/hurl/hurl-4.3.0/completions/_hurl
 source /opt/hurl/hurl-4.3.0/completions/_hurlfmt
 
 alias full-upgrade='sudo apt update && sudo apt full-upgrade && sudo apt autoremove --purge'
-#alias ll='ls -alh'
 alias nn='sudo netstat -antupe'
+alias uu='sudo ufw status numbered'
+alias authlog='tail -f /var/log/auth.log'
+alias grep='grep --color=auto --ignore-case'
 
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
