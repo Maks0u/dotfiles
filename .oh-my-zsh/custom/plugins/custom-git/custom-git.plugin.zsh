@@ -12,6 +12,18 @@ alias gloca='git_log_columns --all'
 alias gg='git_log_columns --all -25 | cat'
 alias glocw="watch --color --interval 2 --no-title -x zsh -c '${PLUGIN_PATH}/git_log_columns.zsh -60 --all'"
 
+# Visualize two diverging branches
+git_graph_merge_base() {
+    local branch1="${1:-HEAD}"
+    local branch2="${2:-HEAD}"
+    local base="$(git merge-base "${branch1}" "${branch2}")"
+    "${PLUGIN_PATH}/git_log_columns.zsh" "${branch1}" "${branch2}" "${base}"^!
+}
+# Use git-log completions
+compdef _git git_graph_merge_base=git-log
+# Aliases
+alias ggb='git_graph_merge_base'
+
 # git status short watch
 alias gssw='watch -ctn 2 git -c color.ui=always status --short'
 # git status branch watch
