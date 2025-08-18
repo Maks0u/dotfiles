@@ -12,12 +12,10 @@ alias gloca='git_log_columns --all'
 alias gg='git_log_columns --all -25 | cat'
 alias glocw="watch --color --interval 2 --no-title -x zsh -c '${PLUGIN_PATH}/git_log_columns.zsh -60 --all'"
 
-# Visualize two diverging branches
+# Visualize diverging branches
 git_graph_merge_base() {
-    local branch1="${1:-HEAD}"
-    local branch2="${2:-HEAD}"
-    local base="$(git merge-base "${branch1}" "${branch2}")"
-    "${PLUGIN_PATH}/git_log_columns.zsh" "${branch1}" "${branch2}" "${base}"^!
+    local base="$(git merge-base "${@}")"
+    "${PLUGIN_PATH}/git_log_columns.zsh" "${@}" "${base}"^!
 }
 # Use git-log completions
 compdef _git git_graph_merge_base=git-log
@@ -42,6 +40,7 @@ bat_diff() {
 compdef _git bat_diff=git-diff
 # Aliases
 alias bd='bat_diff'
+alias bds='bat_diff --staged'
 
 # Show git diff for a specific commit with bat_diff
 commit_diff() {
