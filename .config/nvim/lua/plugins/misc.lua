@@ -40,9 +40,4 @@ return {
             render = 'background'
         },
     },
-    {
-        "sphamba/smear-cursor.nvim",
-        name = 'smear-cursor',
-        opts = {},
-    },
 }
