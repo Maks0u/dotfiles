@@ -45,3 +45,6 @@ vim.opt.wrap = false
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+-- Sync clipboard
+vim.opt.clipboard = 'unnamedplus'
