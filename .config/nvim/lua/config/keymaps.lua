@@ -14,8 +14,8 @@ vim.keymap.set('x', ';', '<Esc>', { desc = 'Exit visual mode' })
 vim.keymap.set('', '-', '$', { desc = 'End of line' })
 
 -- Switch tabs in normal mode
-vim.keymap.set('n', '<Tab>', ':tabnext<CR>', { desc = 'Next Tab', silent = true })
-vim.keymap.set('n', '<S-Tab>', ':tabprevious<CR>', { desc = 'Previous Tab', silent = true })
+vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Next Buffer', silent = true })
+vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { desc = 'Previous Buffer', silent = true })
 
 -- Indent using tab in visual mode
 vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent' })
