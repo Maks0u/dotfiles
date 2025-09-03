@@ -54,8 +54,8 @@ xnoremap ; <Esc>
 noremap - $
 
 " Switch tabs in normal mode
-nnoremap <Tab> :tabnext<CR>
-nnoremap <S-Tab> :tabprevious<CR>
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 " Indent using tab in visual mode
 xnoremap <Tab> >gv
