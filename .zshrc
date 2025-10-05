@@ -147,9 +147,9 @@ export PATH=/opt/node/active/bin:$PATH
 alias biome='npx @biomejs/biome'
 
 # Hurl
-export PATH=/opt/hurl/hurl-4.3.0/bin:$PATH
-source /opt/hurl/hurl-4.3.0/completions/_hurl
-source /opt/hurl/hurl-4.3.0/completions/_hurlfmt
+export PATH=/opt/hurl/hurl-7.0.0/bin:$PATH
+source /opt/hurl/hurl-7.0.0/completions/_hurl
+source /opt/hurl/hurl-7.0.0/completions/_hurlfmt
 
 alias full-upgrade='sudo apt update && sudo apt full-upgrade && sudo apt autoremove --purge'
 alias nn='sudo netstat -antupe'
