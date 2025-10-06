@@ -17,6 +17,7 @@ vim.opt.ignorecase = true
 
 -- Scroll offset
 vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 12
 
 -- Prompt confirm instead of throwing an error when trying to exit without saving
 vim.opt.confirm = true

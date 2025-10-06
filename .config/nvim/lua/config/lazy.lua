@@ -16,7 +16,10 @@ vim.opt.rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 require('lazy').setup({
-    checker = { enabled = true }, -- automatically check for plugin updates
+    checker = {
+        enabled = true, -- check for plugin updates periodically
+        notify = false, -- notify on update
+    }, -- automatically check for plugin updates
     spec = {
         { import = 'plugins' }    -- Import plugins from `nvim/lua/plugins/*.lua`
     }

@@ -1,6 +1,6 @@
 -- Themes
 return {
-    { 
+    {
         'zaldih/themery.nvim',
         name = 'Themery',
         opts = {
@@ -23,6 +23,16 @@ return {
         priority = 1000,
         opts = {
             transparent_background = true,
+            auto_integrations = true,
+            float = {
+                transparent = true,
+            },
+            integrations = {
+                dropbar = {
+                    enabled = true,
+                    color_mode = true,
+                },
+            },
         },
     },
     {
