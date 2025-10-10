@@ -13,18 +13,13 @@ return {
         delete_to_trash = true,
         columns = {
           "icon",
-          "permissions",
+          -- "permissions",
           -- "size",
           -- "mtime",
         },
         view_options = {
           case_insensitive = true,
           show_hidden = true,
-        },
-        float = {
-          win_options = {
-            winblend = 4,
-          },
         },
 
         use_default_keymaps = false,
@@ -46,6 +41,18 @@ return {
           ["g."] = { "actions.toggle_hidden", mode = "n" },
           ["<M-h>"] = { "actions.toggle_hidden", mode = "n" },
           ["g\\"] = { "actions.toggle_trash", mode = "n" },
+
+          ["gd"] = {
+            desc = "Toggle file detail view",
+            callback = function()
+              detail = not detail
+              if detail then
+                require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+              else
+                require("oil").set_columns({ "icon" })
+              end
+            end,
+          },
         },
       })
 
