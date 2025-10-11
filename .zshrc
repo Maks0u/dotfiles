@@ -99,9 +99,11 @@ plugins=(
 	fzf
 	git
 	z
+    docker
+    git-graph
+    bat-diff
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-    custom-git
 )
 
 source $ZSH/oh-my-zsh.sh
