@@ -1,0 +1,7 @@
+romkatv/powerlevel10k
+
+Maks0u/bat-diff
+Maks0u/git-graph
+
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
