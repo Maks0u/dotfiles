@@ -17,6 +17,7 @@ packages=(
     'net-tools'
     'ripgrep'
     'snapd'
+    'sqlite'
     'stow'
     'tree'
     'zsh'
