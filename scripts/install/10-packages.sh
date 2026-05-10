@@ -14,8 +14,10 @@ packages=(
     'fzf'
     'git'
     'htop'
+    'net-tools'
     'ripgrep'
     'snapd'
+    'stow'
     'tree'
     'zsh'
 )
@@ -23,10 +25,10 @@ packages=(
 if command -v dnf >/dev/null; then
     printf '\nInstalling packages using DNF.\n\n';
 
-    dnf upgrade -y
+    dnf upgrade
     dnf config-manager --set-enabled crb
     dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
-    dnf install -y "${packages[@]}"
+    dnf install "${packages[@]}"
 
     exit 0
 fi
