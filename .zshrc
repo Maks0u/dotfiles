@@ -57,9 +57,9 @@ export PATH=/opt/node/active/bin:$PATH
 alias biome='npx @biomejs/biome'
 
 # Hurl
-export PATH=/opt/hurl/hurl-7.0.0/bin:$PATH
-source /opt/hurl/hurl-7.0.0/completions/_hurl
-source /opt/hurl/hurl-7.0.0/completions/_hurlfmt
+export PATH=/opt/hurl/active/bin:$PATH
+source /opt/hurl/active/completions/_hurl
+source /opt/hurl/active/completions/_hurlfmt
 
 export EDITOR='vim'
 # export PAGER='vim -nR +AnsiEsc -'
