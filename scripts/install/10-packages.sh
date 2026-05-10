@@ -9,11 +9,13 @@ fi
 
 packages=(
     'bat'
+    'btop'
     'curl'
     'dnsutils'
     'fzf'
     'git'
     'htop'
+    'jq'
     'net-tools'
     'ripgrep'
     'snapd'
