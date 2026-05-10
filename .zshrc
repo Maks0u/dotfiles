@@ -49,8 +49,8 @@ antidote load ~/.zsh_plugins.txt
 # User configuration
 
 # nvim
-export PATH=/opt/nvim-linux-x86_64/bin:$PATH
-alias svim='EDITOR=/opt/nvim-linux-x86_64/bin/nvim sudo -e'
+export PATH=/opt/nvim/active/bin:$PATH
+alias svim='EDITOR=/opt/nvim/active/bin/nvim sudo -e'
 
 # Node
 export PATH=/opt/node/active/bin:$PATH

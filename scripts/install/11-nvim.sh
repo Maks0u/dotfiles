@@ -7,21 +7,25 @@ if [[ ! "${EUID}" -eq 0 ]]; then
     exit 1
 fi
 
-install_dir='/opt/nvim-linux-x86_64'
+INSTALL_DIR='/opt/nvim'
 
-if [[ -d "${install_dir}" ]]; then
-    printf '\n%s\n\n' "Neovim already installed in ${install_dir}"
+if [[ -d "${INSTALL_DIR}" ]]; then
+    printf '\n%s\n\n' "Neovim already installed in ${INSTALL_DIR}"
     exit 0
 fi
 
-tempfile='/tmp/nvim.tar.gz'
-trap "rm -f '${tempfile}'" EXIT
+mkdir -p "${INSTALL_DIR}"
+VERSION="$(curl -fsSL -H 'Accept: application/vnd.github+json' \
+    'https://api.github.com/repos/neovim/neovim/releases/latest' \
+    | jq -r '.tag_name')"
 
-curl --location --progress-bar 'https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz' --output "${tempfile}"
+curl --location --progress-bar \
+    "https://github.com/neovim/neovim/releases/download/${VERSION}/nvim-linux-x86_64.tar.gz" \
+    | tar xz -C "${INSTALL_DIR}"
 
-mkdir -p /opt
-tar -xf "${tempfile}" -C /opt
+mv "${INSTALL_DIR}/nvim-linux-x86_64" "${INSTALL_DIR}/${VERSION}"
+ln -sr "${INSTALL_DIR}/${VERSION}" "${INSTALL_DIR}/active"
 
-PATH="${install_dir}/bin:${PATH}"
+PATH="${INSTALL_DIR}/active/bin:${PATH}"
 nvim --version
-printf '\n%s\n\n' "Neovim installed in ${install_dir}"
+printf '\n%s\n\n' "Neovim installed in ${INSTALL_DIR}"
