@@ -35,4 +35,4 @@ ln -sr "${INSTALL_DIR}/${VERSION}" "${INSTALL_DIR}/active"
 
 PATH="${INSTALL_DIR}/active/bin:${PATH}"
 hurl --version
-printf '\n%s\n\n' "HURL installed in ${INSTALL_DIR}"
+printf '\n%s\n\n' "HURL ${VERSION} installed in ${INSTALL_DIR}"

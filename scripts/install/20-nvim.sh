@@ -35,4 +35,4 @@ ln -sr "${INSTALL_DIR}/${VERSION}" "${INSTALL_DIR}/active"
 
 PATH="${INSTALL_DIR}/active/bin:${PATH}"
 nvim --version
-printf '\n%s\n\n' "Neovim installed in ${INSTALL_DIR}"
+printf '\n%s\n\n' "Neovim ${VERSION} installed in ${INSTALL_DIR}"
