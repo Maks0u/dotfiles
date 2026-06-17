@@ -56,6 +56,11 @@ alias svim='EDITOR=/opt/nvim/active/bin/nvim sudo -e'
 export PATH=/opt/node/active/bin:$PATH
 alias biome='npx @biomejs/biome'
 
+# Rust
+export RUSTUP_HOME=/opt/rust/.rustup
+export CARGO_HOME=/opt/rust/.cargo
+[[ -f ${CARGO_HOME}/env ]] && source ${CARGO_HOME}/env
+
 # Hurl
 export PATH=/opt/hurl/active/bin:$PATH
 source /opt/hurl/active/completions/_hurl

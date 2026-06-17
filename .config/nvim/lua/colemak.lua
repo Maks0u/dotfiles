@@ -1,26 +1,3 @@
--- [[ Keymaps ]]
--- See `:help vim.keymap.set()`
-
--- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear highlights' })
-
--- Exit terminal mode
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- Escape with ; in visual mode
-vim.keymap.set('x', ';', '<Esc>', { desc = 'Exit visual mode' })
-
--- End of line
-vim.keymap.set('', '-', '$', { desc = 'End of line' })
-
--- Switch tabs in normal mode
-vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Next Buffer', silent = true })
-vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { desc = 'Previous Buffer', silent = true })
-
--- Indent using tab in visual mode
-vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent' })
-vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Outdent' })
-
 -- [[ Colemak ]]
 -- Inspired by https://github.com/jooize/vim-colemak
 --    e    |    k
@@ -36,29 +13,19 @@ vim.keymap.set('', 'E', '10k', { desc = '10 Up' })
 vim.keymap.set('', 'i', 'l',   { desc = 'Right' })
 vim.keymap.set('', 'I', '$',   { desc = 'End of line' })
 
-vim.keymap.set('n', '<M-e>', ':m<space>-2<CR>', { desc = 'Move line up' })
-vim.keymap.set('n', '<M-n>', ':m<space>+1<CR>', { desc = 'Move line down' })
-vim.keymap.set('x', '<M-e>', ':m<space>\'<-2<CR>gv=gv', { desc = 'Move selection up' })
-vim.keymap.set('x', '<M-n>', ':m<space>\'>+1<CR>gv=gv', { desc = 'Move selection down' })
-
-vim.keymap.set('', 'J', 'ZZ', { desc = 'Save and quit' })
-vim.keymap.set('', 'Q', 'ZQ', { desc = 'Quit without saving' })
-vim.keymap.set('', '<Leader>w', ':w<CR>', { desc = 'Save' })
-vim.keymap.set('', '<Leader>q', ':q<CR>', { desc = 'Quit' })
-vim.keymap.set('', '<Leader>wq', ':wq<CR>', { desc = 'Save and quit' })
+vim.keymap.set('n', '<M-e>', ':m -2<CR>', { desc = 'Move line up' })
+vim.keymap.set('n', '<M-n>', ':m +1<CR>', { desc = 'Move line down' })
+vim.keymap.set('x', '<M-e>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set('x', '<M-n>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
 
 vim.keymap.set('', 'j', 'z')
 
--- Center screen when moving
-vim.keymap.set('', '{', '{zz')
-vim.keymap.set('', '}', '}zz')
-
 vim.keymap.set('', 'l', 'b', { desc = 'Back word' })
 vim.keymap.set('', 'L', 'B', { desc = 'Back WORD' })
-vim.keymap.set('', 'u', 'e', { desc = 'Forward end of word' })
-vim.keymap.set('', 'U', 'E', { desc = 'Forward end of WORD' })
-vim.keymap.set('', 'y', 'w', { desc = 'Forward word' })
-vim.keymap.set('', 'Y', 'W', { desc = 'Forward WORD' })
+vim.keymap.set('', 'u', 'w', { desc = 'Forward word' })
+vim.keymap.set('', 'U', 'W', { desc = 'Forward WORD' })
+vim.keymap.set('', 'y', 'e', { desc = 'Forward end of word' })
+vim.keymap.set('', 'Y', 'E', { desc = 'Forward end of WORD' })
 
 vim.keymap.set('', 'f', 'f',   { desc = 'Move to next {char}' })
 vim.keymap.set('', 'F', 'F',   { desc = 'Move to previous {char}' })
@@ -74,6 +41,7 @@ vim.keymap.set(     'x',  'a',     '<C-V>', { desc = 'Cycle Visual bloc' })
 vim.keymap.set({'n','x'}, 'A',     'V',     { desc = 'Visual line' })
 vim.keymap.set({'n','x'}, '<C-A>', '<C-V>', { desc = 'Visual bloc' })
 vim.keymap.set( 'n',      'ga',    'gv',    { desc = 'Reselect last visual selection' })
+vim.keymap.set( 'n',      '<M-a>', 'ggVG',  { desc = 'Select all' })
 
 vim.keymap.set( 'n',      's', 'i', { desc = 'Insert' })
 vim.keymap.set({'n','x'}, 'S', 'I', { desc = 'Insert start of line' })
@@ -81,11 +49,27 @@ vim.keymap.set({'n','x'}, 'S', 'I', { desc = 'Insert start of line' })
 -- Example: dip -> dsp (Delete inner paragraph)
 -- Example: viw -> asw (Select inner word)
 vim.keymap.set({'o','x'}, 's', 'i', { desc = 'Inner' })
+vim.keymap.del({'o','x'}, 'in') -- remap default from <nvim_install_dir>/share/nvim/runtime/lua/vim/_core/defaults.lua
+vim.keymap.set({'o','x'}, 'sn', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+        require 'vim.treesitter._select'.select_child(vim.v.count1)
+    else
+        vim.lsp.buf.selection_range(-vim.v.count1)
+    end
+end, { desc = 'Select child (inner) node' })
 
 vim.keymap.set( 'n',      't', 'a', { desc = 'Append' })
 vim.keymap.set({'n','x'}, 'T', 'A', { desc = 'Append at end of line' })
 -- Outer operator (operator pending & visual mode)
 vim.keymap.set({'o','x'}, 't', 'a', { desc = 'Outer' })
+vim.keymap.del({'o','x'}, 'an') -- remap default from <nvim_install_dir>/share/nvim/runtime/lua/vim/_core/defaults.lua
+vim.keymap.set({'o','x'}, 'tn', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+        require 'vim.treesitter._select'.select_parent(vim.v.count1)
+    else
+        vim.lsp.buf.selection_range(vim.v.count1)
+    end
+end, { desc = 'Select parent (outer) node' })
 
 vim.keymap.set({'n','x'}, 'w', 'c',   { desc = 'Change' })
 vim.keymap.set( 'n',      'W', 'C',   { desc = 'Change to end of line' })
@@ -122,6 +106,7 @@ vim.keymap.set({'n','x'}, 'ge', 'H', { desc = 'To line [count] from top of windo
 vim.keymap.set({'n','x'}, 'gn', 'L', { desc = 'To line [count] from bottom of window' })
 
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-i>', '<C-w>l', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-i>', '<C-w>l', { desc = 'Move focus to the right window' }) -- can fail if <C-i> is interpreted as <Tab>
 vim.keymap.set('n', '<C-n>', '<C-w>j', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-e>', '<C-w>k', { desc = 'Move focus to the upper window' })
+

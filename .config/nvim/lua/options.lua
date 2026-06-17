@@ -6,6 +6,9 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Sync clipboard
+-- vim.opt.clipboard = 'unnamedplus'
+
 -- Enable mouse mode, useful for resizing splits
 vim.opt.mouse = 'a'
 
@@ -14,6 +17,7 @@ vim.opt.undofile = true
 
 -- Ignore case when searching
 vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Scroll offset
 vim.opt.scrolloff = 10
@@ -47,5 +51,9 @@ vim.opt.wrap = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sync clipboard
-vim.opt.clipboard = 'unnamedplus'
+-- Rounded borders
+vim.opt.winborder = 'rounded'
+
+vim.diagnostic.config({
+    virtual_text = true,
+})

@@ -1,0 +1,80 @@
+{
+  "plugins": {
+    "blink.cmp": {
+      "rev": "26ec6f0a1a8101eb134f8b8568d6099be015fe70",
+      "src": "https://github.com/saghen/blink.cmp"
+    },
+    "blink.lib": {
+      "rev": "bf67998a314236cfba50fe311d60ef03d15d9426",
+      "src": "https://github.com/saghen/blink.lib"
+    },
+    "cmp-nvim-lsp": {
+      "rev": "cbc7b02bb99fae35cb42f514762b89b5126651ef",
+      "src": "https://github.com/hrsh7th/cmp-nvim-lsp"
+    },
+    "gitsigns.nvim": {
+      "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "indent-blankline.nvim": {
+      "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
+    },
+    "lualine.nvim": {
+      "rev": "221ce6b2d999187044529f49da6554a92f740a96",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
+    "mason.nvim": {
+      "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mini.icons": {
+      "rev": "ac38c983aed0a2bd32a65ca3e2348e12e58ca292",
+      "src": "https://github.com/nvim-mini/mini.icons"
+    },
+    "mini.pairs": {
+      "rev": "30cf2f01c4aaa2033db67376b9924fa2442c05d6",
+      "src": "https://github.com/nvim-mini/mini.pairs"
+    },
+    "mini.surround": {
+      "rev": "d401c3856585473693e5ce9ec4c8e5b608b4c0fe",
+      "src": "https://github.com/nvim-mini/mini.surround"
+    },
+    "nvim": {
+      "rev": "49a926655a2f5579e9c276470fc300baaa49e524",
+      "src": "https://github.com/catppuccin/nvim"
+    },
+    "nvim-cmp": {
+      "rev": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",
+      "src": "https://github.com/hrsh7th/nvim-cmp"
+    },
+    "nvim-highlight-colors": {
+      "rev": "e4c7af0211866162d999ce0bdd6a029302e19139",
+      "src": "https://github.com/brenoprata10/nvim-highlight-colors"
+    },
+    "oil.nvim": {
+      "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "telescope-fzf-native.nvim": {
+      "rev": "b25b749b9db64d375d782094e2b9dce53ad53a40",
+      "src": "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+    },
+    "telescope-ui-select.nvim": {
+      "rev": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2",
+      "src": "https://github.com/nvim-telescope/telescope-ui-select.nvim"
+    },
+    "telescope.nvim": {
+      "rev": "9377230aa5305d9e9aca4ed8dadf1070fb4aa9fc",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
+    }
+  }
+}
