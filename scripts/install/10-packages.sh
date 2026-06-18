@@ -10,6 +10,7 @@ packages=(
     'btop'
     'curl'
     'dnsutils'
+    'fd-find'
     'fzf'
     'git'
     'htop'
@@ -42,6 +43,7 @@ if command -v apt >/dev/null; then
     apt install "${packages[@]}"
 
     [[ -f '/usr/bin/batcat' ]] && ln -s /usr/bin/batcat ~/.local/bin/bat
+    [[ -f '/usr/bin/fdfind' ]] && ln -s /usr/bin/fdfind ~/.local/bin/fd
 
     exit 0
 fi
