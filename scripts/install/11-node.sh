@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 cd "$(dirname "$0")"
-sh ./_root.sh "$0"
+sh ./_notRoot.sh "$0"
 
 if [[ $# -eq 1 ]]; then
     VERSION="$1"

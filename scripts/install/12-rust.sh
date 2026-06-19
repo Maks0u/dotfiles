@@ -3,10 +3,10 @@ set -euo pipefail
 IFS=$'\n\t'
 
 cd "$(dirname "$0")"
-sh ./_root.sh
+sh ./_notRoot.sh
 
-export RUSTUP_HOME=/opt/rust/.rustup
-export CARGO_HOME=/opt/rust/.cargo
+[[ -z "${RUSTUP_HOME}" ]] && printf 'RUSTUP_HOME is not defined\n' && exit 1
+[[ -z "${CARGO_HOME}" ]] && printf 'CARGO_HOME is not defined\n' && exit 1
 
 curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
 
