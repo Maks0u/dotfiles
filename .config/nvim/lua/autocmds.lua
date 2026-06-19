@@ -15,25 +15,40 @@ autocmd('TextYankPost', {
     end,
 })
 
+-- autocmd('BufEnter', {
+--     desc = 'Remove search highlight',
+--     group = create_augroup('noh'),
+--     pattern = '*',
+--     callback = function(event)
+--         require('fidget').notify('EVENT: ' .. event.event)
+--         vim.cmd('nohlsearch')
+--     end,
+-- })
+
 autocmd('BufReadPost', {
     desc = 'Resume editing',
     group = create_augroup('cursor.resume'),
     pattern = '*',
     callback = function(event)
-        -- local exclude = { 'gitcommit' } -- don't remember position in commit messages
-        local mark = vim.api.nvim_buf_get_mark(event.buf, '"')
+        local mark = vim.api.nvim_buf_get_mark(event.buf, '.')
         pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end,
 })
 
--- autocmd('LspAttach', {
---     group = create_augroup('lsp'),
---     callback = function(event)
---         local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
---
---         -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
---         if client:supports_method('textDocument/completion') then
---             vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = false })
---         end
---     end,
--- })
+autocmd('LspAttach', {
+    group = create_augroup('lsp'),
+    callback = function(event)
+        local map = function(keys, fn, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, fn, { buffer = event.buf, desc = desc })
+        end
+
+        map('<Leader>f', vim.lsp.buf.format, '[F]ormat')
+        map('<Leader>rn', vim.lsp.buf.rename, '[R]ename')
+        map('gd', vim.lsp.buf.definition, 'Go to [d]efinition')
+        map('gD', vim.lsp.buf.declaration, 'Go to [D]eclaration')
+        map('gi', vim.lsp.buf.implementation, 'Go to [i]mplementation')
+        map('gr', vim.lsp.buf.references, 'Go to [r]eferences')
+        map('<Leader>h', vim.lsp.buf.hover, '[H]over')
+    end,
+})

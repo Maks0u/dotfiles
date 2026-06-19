@@ -7,9 +7,9 @@
 vim.keymap.set('', 'h', 'h',   { desc = 'Left' })
 vim.keymap.set('', 'H', '^',   { desc = 'Start of line' })
 vim.keymap.set('', 'n', 'j',   { desc = 'Down' })
-vim.keymap.set('', 'N', '10j', { desc = '10 Down' })
+vim.keymap.set('', 'N', '}', { desc = 'Down' })
 vim.keymap.set('', 'e', 'k',   { desc = 'Up' })
-vim.keymap.set('', 'E', '10k', { desc = '10 Up' })
+vim.keymap.set('', 'E', '{', { desc = 'Up' })
 vim.keymap.set('', 'i', 'l',   { desc = 'Right' })
 vim.keymap.set('', 'I', '$',   { desc = 'End of line' })
 

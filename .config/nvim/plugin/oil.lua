@@ -2,8 +2,6 @@ vim.pack.add({
     'https://github.com/stevearc/oil.nvim',
 })
 
-require('mini.icons').setup()
-
 require('oil').setup({
     default_file_explorer = true,
     delete_to_trash = true,
@@ -39,8 +37,8 @@ require('oil').setup({
         ['gd'] = {
             desc = 'Toggle file detail view',
             callback = function()
-                detail = not detail
-                if detail then
+                OIL_DETAILS = not OIL_DETAILS
+                if OIL_DETAILS then
                     require('oil').set_columns({ 'icon', 'permissions', 'size', 'mtime' })
                 else
                     require('oil').set_columns({ 'icon' })
