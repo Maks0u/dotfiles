@@ -22,12 +22,12 @@ require('mini.pairs').setup()
 
 require('mini.surround').setup({
     mappings = {
-        add = '<Leader>s',
-        delete = '<Leader>sd',
+        add = 'gs',
+        delete = 'gsd',
         find = '',
         find_left = '',
         highlight = '',
-        replace = '<Leader>sr',
+        replace = 'gsr',
     },
 })
 
@@ -38,5 +38,6 @@ require('which-key').setup({
         { '<Leader>b', group = '[B]uffer', mode = { 'n', 'x' } },
         { '<Leader>g', group = '[G]it', mode = { 'n', 'x' } },
         { '<Leader>s', group = '[S]urround', mode = { 'n' } },
+        { '<Leader>t', group = '[T]elescope', mode = { 'n' } },
     }
 })
