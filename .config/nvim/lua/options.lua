@@ -7,7 +7,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Sync clipboard
--- vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus' -- Slow start and dosen't work in WSL
 
 -- Enable mouse mode, useful for resizing splits
 vim.opt.mouse = 'a'

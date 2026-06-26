@@ -32,6 +32,8 @@ if command -v dnf >/dev/null; then
     dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
     dnf install "${packages[@]}"
 
+    ln -s /var/lib/snapd/snap /snap
+
     exit 0
 fi
 

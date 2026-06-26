@@ -28,7 +28,7 @@ curl --location --progress-bar -O "https://nodejs.org/dist/${VERSION}/node-${VER
 curl --location --progress-bar -o './nodejs-keyring.kbx' 'https://github.com/nodejs/release-keys/raw/HEAD/gpg/pubring.kbx'
 curl --location --progress-bar -o './SHASUMS256.txt.asc' "https://nodejs.org/dist/${VERSION}/SHASUMS256.txt.asc"
 gpgv --keyring='./nodejs-keyring.kbx' --output './SHASUMS256.txt' < './SHASUMS256.txt.asc'
-shasum --check './SHASUMS256.txt' --ignore-missing
+sha256sum --check './SHASUMS256.txt' --ignore-missing
 
 tar xf "./node-${VERSION}-linux-x64.tar.xz" -C "${INSTALL_DIR}"
 
