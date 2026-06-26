@@ -56,6 +56,11 @@ alias svim='EDITOR=/opt/nvim/active/bin/nvim sudo -e'
 export PATH=/opt/node/active/bin:$PATH
 alias biome='npx @biomejs/biome'
 
+# Deno
+export DENO_INSTALL='/opt/deno'
+[[ -f "${DENO_INSTALL}/env" ]] && source "${DENO_INSTALL}/env"
+[[ -d "${DENO_INSTALL}/completions" ]] && export FPATH="${DENO_INSTALL}/completions:$FPATH"
+
 # Rust
 export RUSTUP_HOME=/opt/rust/.rustup
 export CARGO_HOME=/opt/rust/.cargo
@@ -80,10 +85,6 @@ len()
 alias proxy="${HOME}/dev/proxy/proxy.sh"
 alias webdeck="${HOME}/dev/twitch/webdeck/webdeck.sh"
 alias kokoro="${HOME}/dev/tts/kokoro-fastapi.sh"
-
-. "${HOME}/.deno/env"
-
-alias serve='deno run --allow-net --allow-read jsr:@maks0u/cli-serve'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
