@@ -37,7 +37,6 @@ require('which-key').setup({
     spec = {
         { '<Leader>b', group = '[B]uffer', mode = { 'n', 'x' } },
         { '<Leader>g', group = '[G]it', mode = { 'n', 'x' } },
-        { '<Leader>s', group = '[S]urround', mode = { 'n' } },
-        { '<Leader>t', group = '[T]elescope', mode = { 'n' } },
+        { '<Leader>s', group = '[S]earch (Telescope)', mode = { 'n' } },
     }
 })

@@ -25,13 +25,13 @@ vim.keymap.set('n', '<Leader>gd', function()
     gitsigns.diffthis()
 end, { desc = 'Git [d]iff' })
 
-vim.keymap.set('n', '<Leader>gn', function()
+vim.keymap.set('n', ']g', function()
     gitsigns.nav_hunk('next')
-end, { desc = 'Git [n]ext hunk' })
+end, { desc = '[G]it next hunk' })
 
-vim.keymap.set('n', '<Leader>ge', function()
+vim.keymap.set('n', '[g', function()
     gitsigns.nav_hunk('prev')
-end, { desc = 'Git pr[e]vious hunk' })
+end, { desc = '[G]it previous hunk' })
 
 vim.keymap.set('n', '<Leader>gp', function()
     gitsigns.preview_hunk()
