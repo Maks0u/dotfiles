@@ -15,6 +15,7 @@ packages=(
     'git'
     'htop'
     'jq'
+    'libatomic'
     'net-tools'
     'ripgrep'
     'snapd'
