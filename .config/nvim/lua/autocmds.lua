@@ -34,21 +34,3 @@ autocmd('BufReadPost', {
         pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end,
 })
-
-autocmd('LspAttach', {
-    group = create_augroup('lsp'),
-    callback = function(event)
-        local map = function(keys, fn, desc, mode)
-            mode = mode or 'n'
-            vim.keymap.set(mode, keys, fn, { buffer = event.buf, desc = desc })
-        end
-
-        map('<Leader>f', vim.lsp.buf.format, '[F]ormat')
-        map('<Leader>rn', vim.lsp.buf.rename, '[R]ename')
-        map('gd', vim.lsp.buf.definition, 'Go to [d]efinition')
-        map('gD', vim.lsp.buf.declaration, 'Go to [D]eclaration')
-        map('gi', vim.lsp.buf.implementation, 'Go to [i]mplementation')
-        map('gr', vim.lsp.buf.references, 'Go to [r]eferences')
-        map('<Leader>h', vim.lsp.buf.hover, '[H]over')
-    end,
-})

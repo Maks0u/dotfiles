@@ -2,9 +2,11 @@ vim.pack.add({
     'https://github.com/stevearc/oil.nvim',
 })
 
-require('oil').setup({
+local oil = require('oil')
+
+oil.setup({
     default_file_explorer = true,
-    delete_to_trash = true,
+    delete_to_trash = false,
     columns = {
         'icon',
     },
@@ -14,27 +16,18 @@ require('oil').setup({
     },
     use_default_keymaps = false,
     keymaps = {
-        ['?'] = { 'actions.show_help', mode = 'n' },
-        ['<F5>'] = 'actions.refresh',
-        ['<CR>'] = 'actions.select',
-        ['<C-s>'] = { 'actions.select', opts = { vertical = true } },
-        ['<C-h>'] = { 'actions.select', opts = { horizontal = true } },
-        ['<C-t>'] = { 'actions.select', opts = { tab = true } },
-        ['<BS>'] = { 'actions.parent', mode = 'n' },
-        ['gx'] = 'actions.open_external',
-        ['p'] = 'actions.preview',
-        ['<C-u>'] = 'acitons.preview_scroll_up',
-        ['<C-d>'] = 'acitons.preview_scroll_down',
-        ['<C-c>'] = 'actions.yank_entry',
-        ['q'] = { 'actions.close', mode = 'n' },
-        ['_'] = { 'actions.open_cwd', mode = 'n' },
-        ['`'] = { 'actions.cd', mode = 'n' },
-        ['~'] = { 'actions.cd', opts = { scope = 'tab' }, mode = 'n' },
-        ['gs'] = { 'actions.change_sort', mode = 'n' },
-        ['g.'] = { 'actions.toggle_hidden', mode = 'n' },
-        ['<M-h>'] = { 'actions.toggle_hidden', mode = 'n' },
-        ['gt'] = { 'actions.toggle_trash', mode = 'n' },
-        ['gd'] = {
+        ['?'] = { 'actions.show_help', desc = 'Help' },
+        ['q'] = { 'actions.close', desc = 'Close' },
+        ['<CR>'] = { 'actions.select', desc = 'Open file(s)' },
+        ['<C-e>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open in vretical split' },
+        ['<C-n>'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open in horizontal split' },
+        ['<BS>'] = { 'actions.parent', desc = 'Parent' },
+        ['p'] = { 'actions.preview', desc = 'Preview' },
+        ['<C-c>'] = { 'actions.yank_entry', desc = 'Copy filepath' },
+        ['_'] = { 'actions.open_cwd', mode = 'n', desc = 'Go to CWD' },
+        ['`'] = { 'actions.cd', mode = 'n', desc = 'Change CWD' },
+        ['.'] = { 'actions.toggle_hidden', mode = 'n' },
+        [','] = {
             desc = 'Toggle file detail view',
             callback = function()
                 OIL_DETAILS = not OIL_DETAILS
@@ -45,9 +38,9 @@ require('oil').setup({
                 end
             end,
         },
+        ['<Tab>'] = { '', desc = 'Disabled' },
     },
 })
 
-vim.keymap.set('n', '\\', function()
-    require('oil').toggle_float()
-end, { desc = 'Toggle Oil floating window' })
+vim.keymap.set('', '\\', oil.toggle_float, { desc = 'Toggle Oil floating window' })
+vim.keymap.set('', '<Leader>e', oil.toggle_float, { desc = 'Toggle Oil floating window' })

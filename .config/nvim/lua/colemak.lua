@@ -105,8 +105,7 @@ vim.keymap.set({'n','x'}, 'gK', 'K', { desc = 'Lookup' })
 vim.keymap.set({'n','x'}, 'ge', 'H', { desc = 'To line [count] from top of window' })
 vim.keymap.set({'n','x'}, 'gn', 'L', { desc = 'To line [count] from bottom of window' })
 
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-i>', '<C-w>l', { desc = 'Move focus to the right window' }) -- can fail if <C-i> is interpreted as <Tab>
-vim.keymap.set('n', '<C-n>', '<C-w>j', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-e>', '<C-w>k', { desc = 'Move focus to the upper window' })
-
+vim.keymap.set({'n','t'}, '<C-h>', '<C-w>h', { desc = 'Move focus to the left window' })
+vim.keymap.set({'n','t'}, '<C-y>', '<C-w>l', { desc = 'Move focus to the right window' }) -- <C-i> is interpreted as <Tab>
+vim.keymap.set({'n','t'}, '<C-n>', '<C-w>j', { desc = 'Move focus to the lower window' })
+vim.keymap.set({'n','t'}, '<C-e>', '<C-w>k', { desc = 'Move focus to the upper window' })

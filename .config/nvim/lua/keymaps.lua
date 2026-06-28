@@ -15,7 +15,7 @@ vim.keymap.set('', '-', '$', { desc = 'End of line' })
 
 -- Switch tabs in normal mode
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Next Buffer' })
-vim.keymap.set('n', '<S-Tab>', '<cmd>bprevious<CR>', { desc = 'Previous Buffer'})
+vim.keymap.set('n', '<S-Tab>', '<cmd>bprevious<CR>', { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<Leader><Tab>', '<cmd>edit #<CR>', { desc = 'Back to other buffer' })
 
 -- Indent using tab in visual mode
@@ -42,6 +42,9 @@ vim.keymap.set('', '<Leader>bo', '<cmd>update<CR><cmd>%bdelete<CR><cmd>edit #<CR
 vim.keymap.set('', '<Leader>p', function()
     vim.fn.setreg('0', vim.fn.expand('%'))
 end, { desc = 'Copy filepath' })
+
+-- Diagnostics
+vim.keymap.set('n', '<Leader>d', vim.diagnostic.open_float, { desc = '[D]iagnostic open float' })
 
 -- Load colemak keymaps
 require('colemak')

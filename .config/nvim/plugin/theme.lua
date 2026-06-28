@@ -9,12 +9,6 @@ require('catppuccin').setup({
         transparent = true,
     },
     auto_integrations = true,
-    -- integrations = {
-    --     dropbar = {
-    --         enabled = true,
-    --         color_mode = true,
-    --     },
-    -- },
 })
 
 vim.cmd.colorscheme('catppuccin')
