@@ -18,4 +18,5 @@ require('toggleterm').setup({
 })
 
 vim.keymap.set('n', '<Leader>t', '<cmd>ToggleTerm<CR>', { desc = 'Toggle [T]erminal' })
-vim.keymap.set('n', '<Leader>gg', '<cmd>TermExec cmd="git-graph"<CR>', { desc = 'Git [G]raph' })
+vim.keymap.set('n', '<Leader>gg', '<cmd>TermExec cmd=" git-graph"<CR><cmd>wincmd l<CR>', { desc = 'Git [g]raph' })
+vim.keymap.set('n', '<Leader>gh', '<cmd>TermExec cmd=" git-graph %"<CR><cmd>wincmd l<CR>', { desc = 'Git [h]istory' })
