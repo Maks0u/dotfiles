@@ -1,5 +1,4 @@
 vim.pack.add({
-    'https://github.com/j-hui/fidget.nvim',
     'https://github.com/lukas-reineke/indent-blankline.nvim',
     'https://github.com/nvim-lualine/lualine.nvim',
     'https://github.com/nvim-mini/mini.icons',
@@ -8,9 +7,6 @@ vim.pack.add({
     'https://github.com/brenoprata10/nvim-highlight-colors',
     'https://github.com/folke/which-key.nvim',
 })
-
-require('fidget').setup()
-vim.keymap.set('n', '<Leader>n', '<cmd>Fidget history<CR>', { desc = '[N]otification history' })
 
 require('ibl').setup() -- indent-blankline
 
