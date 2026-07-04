@@ -1,50 +1,54 @@
 -- [[ Keymaps ]]
 -- See `:help vim.keymap`
 
+local map = function(mode, keys, fn, desc)
+    vim.keymap.set(mode, keys, fn, { desc = desc, remap = false })
+end
+
 -- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear highlights' })
+map('n', '<Esc>', '<cmd>nohlsearch<CR>', 'Clear highlights')
 
 -- Exit terminal mode
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+map('t', '<Esc>', '<C-\\><C-n>', 'Exit terminal mode')
 
 -- Escape with ; in visual mode
-vim.keymap.set('x', ';', '<Esc>', { desc = 'Exit visual mode' })
+map('x', ';', '<Esc>', 'Exit visual mode')
 
 -- End of line
-vim.keymap.set('', '-', '$', { desc = 'End of line' })
+map('', '-', '$', 'End of line')
 
 -- Switch tabs in normal mode
-vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Next Buffer' })
-vim.keymap.set('n', '<S-Tab>', '<cmd>bprevious<CR>', { desc = 'Previous Buffer' })
-vim.keymap.set('n', '<Leader><Tab>', '<cmd>edit #<CR>', { desc = 'Back to other buffer' })
+map('n', '<Tab>', '<cmd>bnext<CR>', 'Next Buffer')
+map('n', '<S-Tab>', '<cmd>bprevious<CR>', 'Previous Buffer')
+map('n', '<Leader><Tab>', '<cmd>edit #<CR>', 'Back to other buffer')
 
 -- Indent using tab in visual mode
-vim.keymap.set('x', '<Tab>', '>gv', { desc = 'Indent' })
-vim.keymap.set('x', '<S-Tab>', '<gv', { desc = 'Outdent' })
+map('x', '<Tab>', '>gv', 'Indent')
+map('x', '<S-Tab>', '<gv', 'Outdent')
 
 -- Center screen when moving
-vim.keymap.set('', '{', '{zz')
-vim.keymap.set('', '}', '}zz')
+map('', '{', '{zz')
+map('', '}', '}zz')
 
 -- Save & Quit
 vim.api.nvim_create_user_command('W', 'w', { desc = 'Save' })
 vim.api.nvim_create_user_command('Q', 'q', { desc = 'Quit' })
 vim.keymap.set('', 'J', 'ZZ', { desc = 'Save and quit' })
 -- vim.keymap.set('', 'Q', 'ZQ', { desc = 'Quit without saving' })
-vim.keymap.set('', '<Leader>w', '<cmd>w<CR>', { desc = 'Save' })
-vim.keymap.set('', '<Leader>q', '<cmd>q<CR>', { desc = 'Quit' })
-vim.keymap.set('', '<Leader>wq', '<cmd>wq<CR>', { desc = 'Save and quit' })
+map('', '<Leader>w', '<cmd>w<CR>', 'Save')
+map('', '<Leader>q', '<cmd>q<CR>', 'Quit')
+map('', '<Leader>wq', '<cmd>wq<CR>', 'Save and quit')
 
 -- Buffers
-vim.keymap.set('', '<Leader>bd', '<cmd>bdelete<CR>', { desc = 'Delete [b]uffer' })
-vim.keymap.set('', '<Leader>bo', '<cmd>update<CR><cmd>%bdelete<CR><cmd>edit #<CR>`"<cmd>bdelete #<CR>', { desc = 'Delete [o]ther buffers' })
+map('', '<Leader>bd', '<cmd>bdelete<CR>', 'Delete [b]uffer')
+map('', '<Leader>bo', '<cmd>up<bar>%bd<bar>e#<bar>bd#<CR>`"zz', 'Delete [o]ther buffers')
 
-vim.keymap.set('', '<Leader>p', function()
+map('', '<Leader>p', function()
     vim.fn.setreg('0', vim.fn.expand('%'))
-end, { desc = 'Copy filepath' })
+end, 'Copy filepath')
 
 -- Diagnostics
-vim.keymap.set('n', '<Leader>d', vim.diagnostic.open_float, { desc = '[D]iagnostic open float' })
+map('n', '<Leader>d', vim.diagnostic.open_float, '[D]iagnostic open float')
 
 -- Load colemak keymaps
 require('colemak')
