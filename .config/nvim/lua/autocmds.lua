@@ -30,7 +30,7 @@ autocmd('BufReadPost', {
     group = create_augroup('cursor.resume'),
     pattern = '*',
     callback = function(event)
-        local mark = vim.api.nvim_buf_get_mark(event.buf, '.')
+        local mark = vim.api.nvim_buf_get_mark(event.buf, '"')
         pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end,
 })
