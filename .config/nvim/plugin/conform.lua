@@ -2,7 +2,7 @@ vim.pack.add({
     'https://github.com/stevearc/conform.nvim',
 })
 
-local biome_or_prettier = { 'biome', 'prettier', stop_after_first = true }
+local biome_or_prettier = { 'biome-check', 'prettier', stop_after_first = true }
 
 require('conform').setup({
     formatters_by_ft = {
