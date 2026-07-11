@@ -46,5 +46,5 @@ vim.lsp.config('lua_ls', {
 require('mason').setup()
 require('mason-lspconfig').setup({
     automatic_enable = true, -- will automatically enable `vim.lsp.enable()` installed servers
-    ensure_installed = { 'lua_ls', 'ts_ls', 'cssls', 'html' },
+    ensure_installed = { 'cssls', 'html', 'lua_ls', 'stylua', 'ts_ls' },
 })

@@ -6,14 +6,15 @@ local biome_or_prettier = { 'biome-check', 'prettier', stop_after_first = true }
 
 require('conform').setup({
     formatters_by_ft = {
-        lua = { 'stylua' },
-        javascript = biome_or_prettier,
-        typescript = biome_or_prettier,
-        json = biome_or_prettier,
-        markdown = { 'prettier' },
-        yaml = { 'prettier' },
-        sh = { 'shfmt' },
         bash = { 'shfmt' },
+        javascript = biome_or_prettier,
+        json = biome_or_prettier,
+        lua = { 'stylua' },
+        markdown = { 'prettier' },
+        sh = { 'shfmt' },
+        typescript = biome_or_prettier,
+        yaml = { 'prettier' },
+        zsh = { 'shfmt' },
     },
 })
 
