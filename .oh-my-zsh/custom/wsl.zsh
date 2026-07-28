@@ -8,7 +8,7 @@ if [[ $(uname -r) =~ 'microsoft-standard-WSL2' ]]; then
         wslpath -u "$(powershell.exe '$env:USERPROFILE')" | tr -d '\r'
     }
 
-    export WINHOME="$(winhome)"
+    # export WINHOME="$(winhome)" # slow start
 
     alias proxy="${HOME}/dev/proxy/proxy.sh"
     alias webdeck="${HOME}/dev/twitch/webdeck/webdeck.sh"
