@@ -26,13 +26,13 @@ local keys = {
 	},
 	{
 		-- Open a new tab in the current pane's domain
-		key = "T",
-		mods = "SUPER",
+		key = "t",
+		mods = "ALT",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
 	{
 		key = "w",
-		mods = "SUPER",
+		mods = "ALT",
 		action = wezterm.action_callback(function(window, pane)
 			local tab_count = #window:mux_window():tabs()
 			if tab_count == 1 then
